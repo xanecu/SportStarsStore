@@ -1,0 +1,156 @@
+﻿@model SportStars.Models.AspNetUsers
+
+@{
+    ViewBag.Title = "Detail Customer";
+    Layout = null;
+}
+<head>
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+</head>
+
+
+<div class="container">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header text-center">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h2 style="text-shadow:3px 2px 5px gray">@ViewBag.Title</h2>
+            </div>
+            <div class="modal-body">
+                <hr />
+                <dl class="dl-horizontal">
+                    <dt>
+                        @Html.DisplayNameFor(model => model.Id)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.Id)
+                    </dd>
+                    <dt>
+                        @Html.DisplayNameFor(model => model.user_status)
+                    </dt>
+
+                    <dd>
+                        
+                            @if (Model.user_status.Equals("Ativo"))
+                            {
+                                <i style="color:green" class="fas fa-certificate" title="Ativo"></i>
+
+                            }
+                            else if (Model.user_status.Equals("Inativo"))
+                            {
+                                <i style="color:red" class="fas fa-certificate" title="Inativo"></i>
+                            }
+
+                        
+                    </dd>
+
+
+                    <dt>
+                        @Html.DisplayNameFor(model => model.Email)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.Email)
+                    </dd>
+
+                    <dt>
+                        @Html.DisplayNameFor(model => model.EmailConfirmed)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.EmailConfirmed)
+                    </dd>
+
+                    <dt>
+                        @Html.DisplayNameFor(model => model.PasswordHash)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.PasswordHash)
+                    </dd>
+
+                    <dt>
+                        @Html.DisplayNameFor(model => model.SecurityStamp)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.SecurityStamp)
+                    </dd>
+
+                    <dt>
+                        @Html.DisplayNameFor(model => model.PhoneNumber)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.PhoneNumber)
+                    </dd>
+
+                    <dt>
+                        @Html.DisplayNameFor(model => model.PhoneNumberConfirmed)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.PhoneNumberConfirmed)
+                    </dd>
+
+                    <dt>
+                        @Html.DisplayNameFor(model => model.TwoFactorEnabled)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.TwoFactorEnabled)
+                    </dd>
+
+                    <dt>
+                        @Html.DisplayNameFor(model => model.LockoutEndDateUtc)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.LockoutEndDateUtc)
+                    </dd>
+
+                    <dt>
+                        @Html.DisplayNameFor(model => model.LockoutEnabled)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.LockoutEnabled)
+                    </dd>
+
+                    <dt>
+                        @Html.DisplayNameFor(model => model.AccessFailedCount)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.AccessFailedCount)
+                    </dd>
+
+                    <dt>
+                        @Html.DisplayNameFor(model => model.UserName)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.UserName)
+                    </dd>
+
+                    <dt>
+                        @Html.DisplayNameFor(model => model.images_path)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.images_path)
+                    </dd>
+
+                </dl>
+                <hr />
+            </div>
+
+            <div class="modal-footer">
+                <a href="@Url.Action("EditCustomer", "Home", new { id = Model.Id})"class="btn btn-primary">Edit <i class="glyphicon glyphicon-edit"></i></a>
+            </div>
+        </div>
+
+    </div>
+    
+</div>

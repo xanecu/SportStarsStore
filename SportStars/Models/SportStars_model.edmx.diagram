@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="fb110cb42c304624bd146e1eb3db3465" Name="Diagram1">
+        <EntityTypeShape EntityType="finalbootstrap_dbModel.C__MigrationHistory" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="finalbootstrap_dbModel.AspNetRoles" Width="1.5" PointX="0.75" PointY="16.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="finalbootstrap_dbModel.AspNetUserClaims" Width="1.5" PointX="5.25" PointY="18.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="finalbootstrap_dbModel.AspNetUserLogins" Width="1.5" PointX="5.25" PointY="21.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="finalbootstrap_dbModel.AspNetUsers" Width="1.5" PointX="3" PointY="14.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="finalbootstrap_dbModel.brands" Width="1.5" PointX="8.25" PointY="8" IsExpanded="true" />
+        <EntityTypeShape EntityType="finalbootstrap_dbModel.cart_items" Width="1.5" PointX="12.75" PointY="9.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="finalbootstrap_dbModel.category" Width="1.5" PointX="6" PointY="5.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="finalbootstrap_dbModel.competition" Width="1.5" PointX="5.25" PointY="9" IsExpanded="true" />
+        <EntityTypeShape EntityType="finalbootstrap_dbModel.continent" Width="1.5" PointX="0.75" PointY="7.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="finalbootstrap_dbModel.country" Width="1.5" PointX="3" PointY="10.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="finalbootstrap_dbModel.images" Width="1.5" PointX="12.75" PointY="13.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="finalbootstrap_dbModel.orders" Width="1.875" PointX="5.25" PointY="12.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="finalbootstrap_dbModel.product" Width="2" PointX="10.5" PointY="8.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="finalbootstrap_dbModel.sport" Width="1.5" PointX="3" PointY="7.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="finalbootstrap_dbModel.subcategory" Width="1.5" PointX="8.25" PointY="5.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="finalbootstrap_dbModel.team" Width="1.5" PointX="8.25" PointY="10.75" IsExpanded="true" />
+        <AssociationConnector Association="finalbootstrap_dbModel.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" ManuallyRouted="false" />
+        <AssociationConnector Association="finalbootstrap_dbModel.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" ManuallyRouted="false" />
+        <AssociationConnector Association="finalbootstrap_dbModel.FK_order_user" ManuallyRouted="false" />
+        <AssociationConnector Association="finalbootstrap_dbModel.FK_brands_product" ManuallyRouted="false" />
+        <AssociationConnector Association="finalbootstrap_dbModel.FK_cart_items_order_id" ManuallyRouted="false" />
+        <AssociationConnector Association="finalbootstrap_dbModel.FK_cart_items_product_id" ManuallyRouted="false" />
+        <AssociationConnector Association="finalbootstrap_dbModel.FK_category" ManuallyRouted="false" />
+        <AssociationConnector Association="finalbootstrap_dbModel.FK_continent" ManuallyRouted="false" />
+        <AssociationConnector Association="finalbootstrap_dbModel.FK_country" ManuallyRouted="false" />
+        <AssociationConnector Association="finalbootstrap_dbModel.FK_product_competition" ManuallyRouted="false" />
+        <AssociationConnector Association="finalbootstrap_dbModel.FK_sport" ManuallyRouted="false" />
+        <AssociationConnector Association="finalbootstrap_dbModel.FK_continent_country" ManuallyRouted="false" />
+        <AssociationConnector Association="finalbootstrap_dbModel.FK_country_team" ManuallyRouted="false" />
+        <AssociationConnector Association="finalbootstrap_dbModel.FK_order_country" ManuallyRouted="false" />
+        <AssociationConnector Association="finalbootstrap_dbModel.FK_product_id" ManuallyRouted="false" />
+        <AssociationConnector Association="finalbootstrap_dbModel.FK_product_subcategory" ManuallyRouted="false" />
+        <AssociationConnector Association="finalbootstrap_dbModel.FK_product_team" ManuallyRouted="false" />
+        <AssociationConnector Association="finalbootstrap_dbModel.FK_sport_team" ManuallyRouted="false" />
+        <AssociationConnector Association="finalbootstrap_dbModel.AspNetUserRoles" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

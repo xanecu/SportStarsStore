@@ -1,0 +1,258 @@
+﻿@using Microsoft.AspNet.Identity
+<!DOCTYPE html>
+<html>
+<head>
+
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title</title>
+    <link rel="shortcut icon" type="image/svg" href="~/imagenscarousel/logo_SportStars.jpg">
+    <!--<title> Responsive Sidebar Menu  | CodingLab </title>-->
+    @*<title>@ViewBag.Title - My ASP.NET Application</title>*@
+    @*Deixando a linha do title comentada do "layout", que seria a que ele iria referenciar sempre no browser fazemos com que ele va buscar as titles das render body*@
+    
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+
+    @Scripts.Render("~/bundles/bootstrap")
+    @Scripts.Render("~/bundles/jquery")
+
+</head>
+<body>
+
+    <header style="margin:10px">
+        <nav class="navbar navbar-default" style="box-shadow:0 4px 8px 0 rgba(0,0,0,.4); border-radius: 10px">
+            <div class="container-fluid">
+
+
+                <div class="navbar-header">
+                    <a href="@Url.Action("Index","Home")" class="navbar-brand">
+                        <!-- LOGO -->
+                        <img class="img-circle" alt="Brand" src="~/imagenscarousel/logo_SportStars.jpg" style="width: 100%;height: 100%;border: solid 1px;box-shadow: 1px 2px 10px 0 rgba(0,0,0,.4)" />
+                    </a>
+
+
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+
+                </div>
+
+
+
+                <div class="collapse navbar-collapse text-center" id="bs-example-navbar-collapse-1">
+                    <ul class="nav navbar-nav">
+
+                        <li>
+                            <a class="nav-link" href="#footer">About</a>
+                        </li>
+                        <li>
+                            <a class="nav-link" href="#footer">Contacts</a>
+                        </li>
+
+
+                    </ul>
+
+                    <ul class="nav navbar-nav navbar-right">
+
+                        <li>
+                            <form class="navbar-form">
+                                <div class="input-group" style="width:400px">
+                                    <span class="input-group-addon"><i class="glyphicon glyphicon-search"></i></span>
+                                    <input type="text" class="form-control" placeholder="Search ...">
+
+                                </div>
+                                @*<button type="submit" class="btn btn-default">Submit</button>*@
+                            </form>
+                        </li>
+                        <li class="dropdown">
+
+                            <a id="dropdownMenu2" href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                Cart
+
+                                <i class="glyphicon glyphicon-shopping-cart"></i>
+
+                                @if (Request.IsAuthenticated)
+                                {
+                                    <span class="label label-success">
+                                        <strong>0</strong>
+                                    </span>
+                                }
+                                else
+                                {
+                                    <span class="label label-danger">
+                                        <strong>0</strong>
+                                    </span>
+                                }
+
+
+
+                            </a>
+                            @*@Html.ActionLink("Hello " + User.Identity.GetUserName() + "!", "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage", @class = "navbar-link" })*@
+                            <ul class="dropdown-menu" aria-labelledby="dropdownMenu2">
+                                <li class="dropdown-header text-center">
+                                    @if (Request.IsAuthenticated)
+                                    {
+                                        <strong>Cart items list #</strong>
+                                    }
+                                    else
+                                    {
+                                        <strong>Have to Login!</strong>
+                                    }
+
+
+
+
+                                </li>
+
+                                <li class="divider" role="separator">
+
+                                </li>
+                                <li>
+                                    <div class="text-center">
+                                        @if (Request.IsAuthenticated)
+                                        {
+                                            <a class="btn btn-default" href="#">Checkout</a>
+                                        }
+                                        else
+                                        {
+                                            <a class="btn btn-default disabled" href="#">Checkout</a>
+                                        }
+
+
+
+
+
+                                    </div>
+
+                                </li>
+                            </ul>
+                        </li>
+                        @Html.Partial("_LoginPartial")
+
+                    </ul>
+
+
+
+
+
+
+                </div>
+
+
+
+            </div>
+        </nav>
+
+
+
+    </header>
+
+
+    <div style="margin: 50px">
+        <div style="box-shadow: 0 4px 8px 0 rgba(0,0,0,.4); border-radius: 10px;padding:20px">
+            @RenderBody()
+        </div>
+    </div>
+
+
+
+
+
+    <footer style="background-color: rgba(0,0,0,.55)" id="footer">
+        <div class="container-fluid">
+            <div class="row text-center" style="color:black">
+
+                <div class="col-md-4">
+                    <hr style="border:1.5px solid;border-color:black" />
+                    <ul style="list-style:none">
+                        <li>
+                            <h4>
+                                <strong>About.</strong>
+                            </h4>
+
+                        </li>
+                        <li>
+                            Returns Center
+                        </li>
+                        <li>
+                            Help Center
+                        </li>
+                        <li>
+                            Tracking
+                        </li>
+                        <li>
+                            Shipping
+                        </li>
+                        <li>
+                            FAQs
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="col-md-4">
+                    <hr style="border:1.5px solid;border-color:black" />
+                    <ul style="list-style:none">
+                        <li>
+                            <h4>
+                                <strong>Contact us.</strong>
+                            </h4>
+
+                        </li>
+                        <li>
+                            <i class="fab fa-instagram"></i> Instagram
+                        </li>
+                        <li>
+                            <i class="fab fa-linkedin-in"></i> Linkedin
+                        </li>
+                        <li>
+                            <i class="fab fa-facebook-f"></i> Facebook
+                        </li>
+                        <li>
+                            <i class="fab fa-twitter"></i> Twitter
+                        </li>
+                    </ul>
+                </div>
+                <div class="col-md-4">
+                    <hr style="border:1.5px solid;border-color:black" />
+                    <ul style="list-style:none">
+                        <li>
+                            <h4>
+                                <strong>+ Info.</strong>
+                            </h4>
+
+                        </li>
+                        <li>
+                            Privacy Policy
+                        </li>
+                        <li>
+                            Terms and Conditions
+                        </li>
+                        <li>
+                            Stories
+                        </li>
+                    </ul>
+
+                </div>
+
+            </div>
+            <hr style="border:1.5px solid;border-color:black" />
+        </div>
+
+    </footer>
+
+
+
+    @Scripts.Render("~/bundles/bootstrap")
+    @Scripts.Render("~/bundles/jquery")
+    @RenderSection("scripts", required: false)
+    @RenderSection("productslider", required: false)
+    
+</body>
+
+</html>
+

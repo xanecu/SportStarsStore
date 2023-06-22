@@ -1,0 +1,1322 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="finalbootstrap_dbModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="__MigrationHistory">
+          <Key>
+            <PropertyRef Name="MigrationId" />
+            <PropertyRef Name="ContextKey" />
+          </Key>
+          <Property Name="MigrationId" Type="nvarchar" MaxLength="150" Nullable="false" />
+          <Property Name="ContextKey" Type="nvarchar" MaxLength="300" Nullable="false" />
+          <Property Name="Model" Type="varbinary(max)" Nullable="false" />
+          <Property Name="ProductVersion" Type="nvarchar" MaxLength="32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AspNetRoles">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="256" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AspNetUserClaims">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserId" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="ClaimType" Type="nvarchar(max)" />
+          <Property Name="ClaimValue" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="AspNetUserLogins">
+          <Key>
+            <PropertyRef Name="LoginProvider" />
+            <PropertyRef Name="ProviderKey" />
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="LoginProvider" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="ProviderKey" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="UserId" Type="nvarchar" MaxLength="128" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AspNetUserRoles">
+          <Key>
+            <PropertyRef Name="UserId" />
+            <PropertyRef Name="RoleId" />
+          </Key>
+          <Property Name="UserId" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="RoleId" Type="nvarchar" MaxLength="128" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AspNetUsers">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="Email" Type="nvarchar" MaxLength="256" />
+          <Property Name="EmailConfirmed" Type="bit" Nullable="false" />
+          <Property Name="PasswordHash" Type="nvarchar(max)" />
+          <Property Name="SecurityStamp" Type="nvarchar(max)" />
+          <Property Name="PhoneNumber" Type="nvarchar(max)" />
+          <Property Name="PhoneNumberConfirmed" Type="bit" Nullable="false" />
+          <Property Name="TwoFactorEnabled" Type="bit" Nullable="false" />
+          <Property Name="LockoutEndDateUtc" Type="datetime" />
+          <Property Name="LockoutEnabled" Type="bit" Nullable="false" />
+          <Property Name="AccessFailedCount" Type="int" Nullable="false" />
+          <Property Name="UserName" Type="nvarchar" MaxLength="256" Nullable="false" />
+          <Property Name="images_path" Type="varchar" MaxLength="250" />
+          <Property Name="user_status" Type="varchar" MaxLength="20" Nullable="false" />
+        </EntityType>
+        <EntityType Name="brands">
+          <Key>
+            <PropertyRef Name="brands_name" />
+          </Key>
+          <Property Name="brands_name" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="brand_image_path" Type="varchar" MaxLength="250" />
+        </EntityType>
+        <EntityType Name="cart_items">
+          <Key>
+            <PropertyRef Name="cart_items_id" />
+          </Key>
+          <Property Name="cart_items_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="cart_items_quantity" Type="int" Nullable="false" />
+          <Property Name="product_id" Type="int" Nullable="false" />
+          <Property Name="cart_items_insertdate" Type="datetime" />
+          <Property Name="cart_items_unit_price" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="cart_items_subtotal" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="order_id" Type="int" />
+        </EntityType>
+        <EntityType Name="category">
+          <Key>
+            <PropertyRef Name="category_name" />
+          </Key>
+          <Property Name="category_name" Type="varchar" MaxLength="30" Nullable="false" />
+        </EntityType>
+        <EntityType Name="competition">
+          <Key>
+            <PropertyRef Name="competition_name" />
+          </Key>
+          <Property Name="competition_name" Type="varchar" MaxLength="40" Nullable="false" />
+          <Property Name="competition_type" Type="varchar" MaxLength="40" />
+          <Property Name="country_id" Type="int" />
+          <Property Name="sport_id" Type="int" />
+          <Property Name="continent_id" Type="int" />
+        </EntityType>
+        <EntityType Name="continent">
+          <Key>
+            <PropertyRef Name="continent_id" />
+          </Key>
+          <Property Name="continent_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="continent_name" Type="varchar" MaxLength="30" />
+        </EntityType>
+        <EntityType Name="country">
+          <Key>
+            <PropertyRef Name="country_id" />
+          </Key>
+          <Property Name="country_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="country_name" Type="varchar" MaxLength="70" Nullable="false" />
+          <Property Name="country_dim" Type="varchar" MaxLength="2" Nullable="false" />
+          <Property Name="continent_id" Type="int" />
+        </EntityType>
+        <EntityType Name="images">
+          <Key>
+            <PropertyRef Name="images_id" />
+          </Key>
+          <Property Name="images_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="images_path" Type="varchar" MaxLength="250" />
+          <Property Name="product_id" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="orders">
+          <Key>
+            <PropertyRef Name="order_id" />
+          </Key>
+          <Property Name="order_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="shipper_type" Type="varchar" MaxLength="20" />
+          <Property Name="order_total" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="order_amount" Type="int" />
+          <Property Name="order_name" Type="varchar" MaxLength="100" />
+          <Property Name="order_address" Type="varchar" MaxLength="100" />
+          <Property Name="order_zipcode" Type="varchar" MaxLength="20" />
+          <Property Name="order_city" Type="varchar" MaxLength="40" />
+          <Property Name="order_phone" Type="varchar" MaxLength="30" />
+          <Property Name="order_nif" Type="int" />
+          <Property Name="order_datetime" Type="datetime" />
+          <Property Name="order_user" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="payment_type" Type="varchar" MaxLength="30" />
+          <Property Name="order_country" Type="int" />
+          <Property Name="order_status" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="order_datetime_finish" Type="datetime" />
+        </EntityType>
+        <EntityType Name="product">
+          <Key>
+            <PropertyRef Name="product_id" />
+          </Key>
+          <Property Name="product_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="product_name" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="product_price" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="product_weight" Type="real" />
+          <Property Name="product_letter_size" Type="varchar" MaxLength="10" />
+          <Property Name="product_number_size" Type="real" />
+          <Property Name="product_qtd" Type="int" Nullable="false" />
+          <Property Name="product_comment" Type="varchar" MaxLength="500" />
+          <Property Name="product_datetime" Type="datetime" />
+          <Property Name="product_year" Type="int" />
+          <Property Name="product_type" Type="varchar" MaxLength="20" />
+          <Property Name="brands_name" Type="varchar" MaxLength="30" />
+          <Property Name="product_player_name" Type="varchar" MaxLength="50" />
+          <Property Name="competition_name" Type="varchar" MaxLength="40" />
+          <Property Name="team_name" Type="varchar" MaxLength="40" />
+          <Property Name="subcategory_name" Type="varchar" MaxLength="30" />
+          <Property Name="product_status" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="product_mainimage" Type="varchar" MaxLength="250" />
+        </EntityType>
+        <EntityType Name="sport">
+          <Key>
+            <PropertyRef Name="sport_id" />
+          </Key>
+          <Property Name="sport_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="sport_name" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="sport_type" Type="varchar" MaxLength="20" />
+        </EntityType>
+        <EntityType Name="subcategory">
+          <Key>
+            <PropertyRef Name="subcategory_name" />
+          </Key>
+          <Property Name="subcategory_name" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="category_name" Type="varchar" MaxLength="30" />
+        </EntityType>
+        <EntityType Name="team">
+          <Key>
+            <PropertyRef Name="team_name" />
+          </Key>
+          <Property Name="team_name" Type="varchar" MaxLength="40" Nullable="false" />
+          <Property Name="team_type" Type="varchar" MaxLength="20" />
+          <Property Name="country_id" Type="int" />
+          <Property Name="sport_id" Type="int" />
+        </EntityType>
+        <Association Name="FK_brands_product">
+          <End Role="brands" Type="Self.brands" Multiplicity="0..1" />
+          <End Role="product" Type="Self.product" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="brands">
+              <PropertyRef Name="brands_name" />
+            </Principal>
+            <Dependent Role="product">
+              <PropertyRef Name="brands_name" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_cart_items_order_id">
+          <End Role="orders" Type="Self.orders" Multiplicity="0..1" />
+          <End Role="cart_items" Type="Self.cart_items" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="orders">
+              <PropertyRef Name="order_id" />
+            </Principal>
+            <Dependent Role="cart_items">
+              <PropertyRef Name="order_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_cart_items_product_id">
+          <End Role="product" Type="Self.product" Multiplicity="1" />
+          <End Role="cart_items" Type="Self.cart_items" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="product">
+              <PropertyRef Name="product_id" />
+            </Principal>
+            <Dependent Role="cart_items">
+              <PropertyRef Name="product_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_category">
+          <End Role="category" Type="Self.category" Multiplicity="0..1" />
+          <End Role="subcategory" Type="Self.subcategory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="category">
+              <PropertyRef Name="category_name" />
+            </Principal>
+            <Dependent Role="subcategory">
+              <PropertyRef Name="category_name" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_continent">
+          <End Role="continent" Type="Self.continent" Multiplicity="0..1" />
+          <End Role="competition" Type="Self.competition" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="continent">
+              <PropertyRef Name="continent_id" />
+            </Principal>
+            <Dependent Role="competition">
+              <PropertyRef Name="continent_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_continent_country">
+          <End Role="continent" Type="Self.continent" Multiplicity="0..1" />
+          <End Role="country" Type="Self.country" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="continent">
+              <PropertyRef Name="continent_id" />
+            </Principal>
+            <Dependent Role="country">
+              <PropertyRef Name="continent_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_country">
+          <End Role="country" Type="Self.country" Multiplicity="0..1" />
+          <End Role="competition" Type="Self.competition" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="country">
+              <PropertyRef Name="country_id" />
+            </Principal>
+            <Dependent Role="competition">
+              <PropertyRef Name="country_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_country_team">
+          <End Role="country" Type="Self.country" Multiplicity="0..1" />
+          <End Role="team" Type="Self.team" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="country">
+              <PropertyRef Name="country_id" />
+            </Principal>
+            <Dependent Role="team">
+              <PropertyRef Name="country_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="AspNetUserClaims" Type="Self.AspNetUserClaims" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserClaims">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="AspNetUserLogins" Type="Self.AspNetUserLogins" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserLogins">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_AspNetUserRoles_dbo_AspNetRoles_RoleId">
+          <End Role="AspNetRoles" Type="Self.AspNetRoles" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="AspNetUserRoles" Type="Self.AspNetUserRoles" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetRoles">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserRoles">
+              <PropertyRef Name="RoleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_AspNetUserRoles_dbo_AspNetUsers_UserId">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="AspNetUserRoles" Type="Self.AspNetUserRoles" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserRoles">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_order_country">
+          <End Role="country" Type="Self.country" Multiplicity="0..1" />
+          <End Role="orders" Type="Self.orders" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="country">
+              <PropertyRef Name="country_id" />
+            </Principal>
+            <Dependent Role="orders">
+              <PropertyRef Name="order_country" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_order_user">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1" />
+          <End Role="orders" Type="Self.orders" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="orders">
+              <PropertyRef Name="order_user" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_product_competition">
+          <End Role="competition" Type="Self.competition" Multiplicity="0..1" />
+          <End Role="product" Type="Self.product" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="competition">
+              <PropertyRef Name="competition_name" />
+            </Principal>
+            <Dependent Role="product">
+              <PropertyRef Name="competition_name" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_product_id">
+          <End Role="product" Type="Self.product" Multiplicity="1" />
+          <End Role="images" Type="Self.images" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="product">
+              <PropertyRef Name="product_id" />
+            </Principal>
+            <Dependent Role="images">
+              <PropertyRef Name="product_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_product_subcategory">
+          <End Role="subcategory" Type="Self.subcategory" Multiplicity="0..1" />
+          <End Role="product" Type="Self.product" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="subcategory">
+              <PropertyRef Name="subcategory_name" />
+            </Principal>
+            <Dependent Role="product">
+              <PropertyRef Name="subcategory_name" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_product_team">
+          <End Role="team" Type="Self.team" Multiplicity="0..1" />
+          <End Role="product" Type="Self.product" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="team">
+              <PropertyRef Name="team_name" />
+            </Principal>
+            <Dependent Role="product">
+              <PropertyRef Name="team_name" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_sport">
+          <End Role="sport" Type="Self.sport" Multiplicity="0..1" />
+          <End Role="competition" Type="Self.competition" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="sport">
+              <PropertyRef Name="sport_id" />
+            </Principal>
+            <Dependent Role="competition">
+              <PropertyRef Name="sport_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_sport_team">
+          <End Role="sport" Type="Self.sport" Multiplicity="0..1" />
+          <End Role="team" Type="Self.team" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="sport">
+              <PropertyRef Name="sport_id" />
+            </Principal>
+            <Dependent Role="team">
+              <PropertyRef Name="sport_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="finalbootstrap_dbModelStoreContainer">
+          <EntitySet Name="__MigrationHistory" EntityType="Self.__MigrationHistory" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AspNetRoles" EntityType="Self.AspNetRoles" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AspNetUserClaims" EntityType="Self.AspNetUserClaims" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AspNetUserLogins" EntityType="Self.AspNetUserLogins" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AspNetUserRoles" EntityType="Self.AspNetUserRoles" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AspNetUsers" EntityType="Self.AspNetUsers" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="brands" EntityType="Self.brands" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="cart_items" EntityType="Self.cart_items" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="category" EntityType="Self.category" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="competition" EntityType="Self.competition" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="continent" EntityType="Self.continent" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="country" EntityType="Self.country" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="images" EntityType="Self.images" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="orders" EntityType="Self.orders" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="product" EntityType="Self.product" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sport" EntityType="Self.sport" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="subcategory" EntityType="Self.subcategory" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="team" EntityType="Self.team" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_brands_product" Association="Self.FK_brands_product">
+            <End Role="brands" EntitySet="brands" />
+            <End Role="product" EntitySet="product" />
+          </AssociationSet>
+          <AssociationSet Name="FK_cart_items_order_id" Association="Self.FK_cart_items_order_id">
+            <End Role="orders" EntitySet="orders" />
+            <End Role="cart_items" EntitySet="cart_items" />
+          </AssociationSet>
+          <AssociationSet Name="FK_cart_items_product_id" Association="Self.FK_cart_items_product_id">
+            <End Role="product" EntitySet="product" />
+            <End Role="cart_items" EntitySet="cart_items" />
+          </AssociationSet>
+          <AssociationSet Name="FK_category" Association="Self.FK_category">
+            <End Role="category" EntitySet="category" />
+            <End Role="subcategory" EntitySet="subcategory" />
+          </AssociationSet>
+          <AssociationSet Name="FK_continent" Association="Self.FK_continent">
+            <End Role="continent" EntitySet="continent" />
+            <End Role="competition" EntitySet="competition" />
+          </AssociationSet>
+          <AssociationSet Name="FK_continent_country" Association="Self.FK_continent_country">
+            <End Role="continent" EntitySet="continent" />
+            <End Role="country" EntitySet="country" />
+          </AssociationSet>
+          <AssociationSet Name="FK_country" Association="Self.FK_country">
+            <End Role="country" EntitySet="country" />
+            <End Role="competition" EntitySet="competition" />
+          </AssociationSet>
+          <AssociationSet Name="FK_country_team" Association="Self.FK_country_team">
+            <End Role="country" EntitySet="country" />
+            <End Role="team" EntitySet="team" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="AspNetUserClaims" EntitySet="AspNetUserClaims" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="AspNetUserLogins" EntitySet="AspNetUserLogins" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_AspNetUserRoles_dbo_AspNetRoles_RoleId" Association="Self.FK_dbo_AspNetUserRoles_dbo_AspNetRoles_RoleId">
+            <End Role="AspNetRoles" EntitySet="AspNetRoles" />
+            <End Role="AspNetUserRoles" EntitySet="AspNetUserRoles" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_AspNetUserRoles_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserRoles_dbo_AspNetUsers_UserId">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="AspNetUserRoles" EntitySet="AspNetUserRoles" />
+          </AssociationSet>
+          <AssociationSet Name="FK_order_country" Association="Self.FK_order_country">
+            <End Role="country" EntitySet="country" />
+            <End Role="orders" EntitySet="orders" />
+          </AssociationSet>
+          <AssociationSet Name="FK_order_user" Association="Self.FK_order_user">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="orders" EntitySet="orders" />
+          </AssociationSet>
+          <AssociationSet Name="FK_product_competition" Association="Self.FK_product_competition">
+            <End Role="competition" EntitySet="competition" />
+            <End Role="product" EntitySet="product" />
+          </AssociationSet>
+          <AssociationSet Name="FK_product_id" Association="Self.FK_product_id">
+            <End Role="product" EntitySet="product" />
+            <End Role="images" EntitySet="images" />
+          </AssociationSet>
+          <AssociationSet Name="FK_product_subcategory" Association="Self.FK_product_subcategory">
+            <End Role="subcategory" EntitySet="subcategory" />
+            <End Role="product" EntitySet="product" />
+          </AssociationSet>
+          <AssociationSet Name="FK_product_team" Association="Self.FK_product_team">
+            <End Role="team" EntitySet="team" />
+            <End Role="product" EntitySet="product" />
+          </AssociationSet>
+          <AssociationSet Name="FK_sport" Association="Self.FK_sport">
+            <End Role="sport" EntitySet="sport" />
+            <End Role="competition" EntitySet="competition" />
+          </AssociationSet>
+          <AssociationSet Name="FK_sport_team" Association="Self.FK_sport_team">
+            <End Role="sport" EntitySet="sport" />
+            <End Role="team" EntitySet="team" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="finalbootstrap_dbModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="C__MigrationHistory">
+          <Key>
+            <PropertyRef Name="MigrationId" />
+            <PropertyRef Name="ContextKey" />
+          </Key>
+          <Property Name="MigrationId" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ContextKey" Type="String" MaxLength="300" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Model" Type="Binary" MaxLength="Max" FixedLength="false" Nullable="false" />
+          <Property Name="ProductVersion" Type="String" MaxLength="32" FixedLength="false" Unicode="true" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AspNetRoles">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="256" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="AspNetUsers" Relationship="Self.AspNetUserRoles" FromRole="AspNetRoles" ToRole="AspNetUsers" />
+        </EntityType>
+        <EntityType Name="AspNetUserClaims">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserId" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ClaimType" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ClaimValue" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="AspNetUsers" Relationship="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" FromRole="AspNetUserClaims" ToRole="AspNetUsers" />
+        </EntityType>
+        <EntityType Name="AspNetUserLogins">
+          <Key>
+            <PropertyRef Name="LoginProvider" />
+            <PropertyRef Name="ProviderKey" />
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="LoginProvider" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ProviderKey" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="UserId" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="AspNetUsers" Relationship="Self.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" FromRole="AspNetUserLogins" ToRole="AspNetUsers" />
+        </EntityType>
+        <EntityType Name="AspNetUsers">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Email" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Name="EmailConfirmed" Type="Boolean" Nullable="false" />
+          <Property Name="PasswordHash" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="SecurityStamp" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="PhoneNumber" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="PhoneNumberConfirmed" Type="Boolean" Nullable="false" />
+          <Property Name="TwoFactorEnabled" Type="Boolean" Nullable="false" />
+          <Property Name="LockoutEndDateUtc" Type="DateTime" Precision="3" />
+          <Property Name="LockoutEnabled" Type="Boolean" Nullable="false" />
+          <Property Name="AccessFailedCount" Type="Int32" Nullable="false" />
+          <Property Name="UserName" Type="String" MaxLength="256" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="images_path" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="user_status" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="AspNetUserClaims" Relationship="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" FromRole="AspNetUsers" ToRole="AspNetUserClaims" />
+          <NavigationProperty Name="AspNetUserLogins" Relationship="Self.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" FromRole="AspNetUsers" ToRole="AspNetUserLogins" />
+          <NavigationProperty Name="orders" Relationship="Self.FK_order_user" FromRole="AspNetUsers" ToRole="orders" />
+          <NavigationProperty Name="AspNetRoles" Relationship="Self.AspNetUserRoles" FromRole="AspNetUsers" ToRole="AspNetRoles" />
+        </EntityType>
+        <EntityType Name="brands">
+          <Key>
+            <PropertyRef Name="brands_name" />
+          </Key>
+          <Property Name="brands_name" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="brand_image_path" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="product" Relationship="Self.FK_brands_product" FromRole="brands" ToRole="product" />
+        </EntityType>
+        <EntityType Name="cart_items">
+          <Key>
+            <PropertyRef Name="cart_items_id" />
+          </Key>
+          <Property Name="cart_items_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="cart_items_quantity" Type="Int32" Nullable="false" />
+          <Property Name="product_id" Type="Int32" Nullable="false" />
+          <Property Name="cart_items_insertdate" Type="DateTime" Precision="3" />
+          <Property Name="cart_items_unit_price" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="cart_items_subtotal" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="order_id" Type="Int32" />
+          <NavigationProperty Name="orders" Relationship="Self.FK_cart_items_order_id" FromRole="cart_items" ToRole="orders" />
+          <NavigationProperty Name="product" Relationship="Self.FK_cart_items_product_id" FromRole="cart_items" ToRole="product" />
+        </EntityType>
+        <EntityType Name="category">
+          <Key>
+            <PropertyRef Name="category_name" />
+          </Key>
+          <Property Name="category_name" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="subcategory" Relationship="Self.FK_category" FromRole="category" ToRole="subcategory" />
+        </EntityType>
+        <EntityType Name="competition">
+          <Key>
+            <PropertyRef Name="competition_name" />
+          </Key>
+          <Property Name="competition_name" Type="String" MaxLength="40" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="competition_type" Type="String" MaxLength="40" FixedLength="false" Unicode="false" />
+          <Property Name="country_id" Type="Int32" />
+          <Property Name="sport_id" Type="Int32" />
+          <Property Name="continent_id" Type="Int32" />
+          <NavigationProperty Name="continent" Relationship="Self.FK_continent" FromRole="competition" ToRole="continent" />
+          <NavigationProperty Name="country" Relationship="Self.FK_country" FromRole="competition" ToRole="country" />
+          <NavigationProperty Name="product" Relationship="Self.FK_product_competition" FromRole="competition" ToRole="product" />
+          <NavigationProperty Name="sport" Relationship="Self.FK_sport" FromRole="competition" ToRole="sport" />
+        </EntityType>
+        <EntityType Name="continent">
+          <Key>
+            <PropertyRef Name="continent_id" />
+          </Key>
+          <Property Name="continent_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="continent_name" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="competition" Relationship="Self.FK_continent" FromRole="continent" ToRole="competition" />
+          <NavigationProperty Name="country" Relationship="Self.FK_continent_country" FromRole="continent" ToRole="country" />
+        </EntityType>
+        <EntityType Name="country">
+          <Key>
+            <PropertyRef Name="country_id" />
+          </Key>
+          <Property Name="country_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="country_name" Type="String" MaxLength="70" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="country_dim" Type="String" MaxLength="2" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="continent_id" Type="Int32" />
+          <NavigationProperty Name="competition" Relationship="Self.FK_country" FromRole="country" ToRole="competition" />
+          <NavigationProperty Name="continent" Relationship="Self.FK_continent_country" FromRole="country" ToRole="continent" />
+          <NavigationProperty Name="team" Relationship="Self.FK_country_team" FromRole="country" ToRole="team" />
+          <NavigationProperty Name="orders" Relationship="Self.FK_order_country" FromRole="country" ToRole="orders" />
+        </EntityType>
+        <EntityType Name="images">
+          <Key>
+            <PropertyRef Name="images_id" />
+          </Key>
+          <Property Name="images_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="images_path" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="product_id" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="product" Relationship="Self.FK_product_id" FromRole="images" ToRole="product" />
+        </EntityType>
+        <EntityType Name="orders">
+          <Key>
+            <PropertyRef Name="order_id" />
+          </Key>
+          <Property Name="order_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="shipper_type" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="order_total" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="order_amount" Type="Int32" />
+          <Property Name="order_name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="order_address" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="order_zipcode" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="order_city" Type="String" MaxLength="40" FixedLength="false" Unicode="false" />
+          <Property Name="order_phone" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="order_nif" Type="Int32" />
+          <Property Name="order_datetime" Type="DateTime" Precision="3" />
+          <Property Name="order_user" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="payment_type" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="order_country" Type="Int32" />
+          <Property Name="order_status" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="AspNetUsers" Relationship="Self.FK_order_user" FromRole="orders" ToRole="AspNetUsers" />
+          <NavigationProperty Name="cart_items" Relationship="Self.FK_cart_items_order_id" FromRole="orders" ToRole="cart_items" />
+          <NavigationProperty Name="country" Relationship="Self.FK_order_country" FromRole="orders" ToRole="country" />
+          <Property Name="order_datetime_finish" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="product">
+          <Key>
+            <PropertyRef Name="product_id" />
+          </Key>
+          <Property Name="product_name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="product_price" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="product_weight" Type="Single" />
+          <Property Name="product_letter_size" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="product_number_size" Type="Single" />
+          <Property Name="product_qtd" Type="Int32" Nullable="false" />
+          <Property Name="product_comment" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="product_datetime" Type="DateTime" Precision="3" />
+          <Property Name="product_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="product_year" Type="Int32" />
+          <Property Name="product_type" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="brands_name" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="product_player_name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="competition_name" Type="String" MaxLength="40" FixedLength="false" Unicode="false" />
+          <Property Name="team_name" Type="String" MaxLength="40" FixedLength="false" Unicode="false" />
+          <Property Name="subcategory_name" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="product_status" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="brands" Relationship="Self.FK_brands_product" FromRole="product" ToRole="brands" />
+          <NavigationProperty Name="cart_items" Relationship="Self.FK_cart_items_product_id" FromRole="product" ToRole="cart_items" />
+          <NavigationProperty Name="competition" Relationship="Self.FK_product_competition" FromRole="product" ToRole="competition" />
+          <NavigationProperty Name="images" Relationship="Self.FK_product_id" FromRole="product" ToRole="images" />
+          <NavigationProperty Name="subcategory" Relationship="Self.FK_product_subcategory" FromRole="product" ToRole="subcategory" />
+          <NavigationProperty Name="team" Relationship="Self.FK_product_team" FromRole="product" ToRole="team" />
+          <Property Name="product_mainimage" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="sport">
+          <Key>
+            <PropertyRef Name="sport_id" />
+          </Key>
+          <Property Name="sport_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="sport_name" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="sport_type" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="competition" Relationship="Self.FK_sport" FromRole="sport" ToRole="competition" />
+          <NavigationProperty Name="team" Relationship="Self.FK_sport_team" FromRole="sport" ToRole="team" />
+        </EntityType>
+        <EntityType Name="subcategory">
+          <Key>
+            <PropertyRef Name="subcategory_name" />
+          </Key>
+          <Property Name="subcategory_name" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="category_name" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="category" Relationship="Self.FK_category" FromRole="subcategory" ToRole="category" />
+          <NavigationProperty Name="product" Relationship="Self.FK_product_subcategory" FromRole="subcategory" ToRole="product" />
+        </EntityType>
+        <EntityType Name="team">
+          <Key>
+            <PropertyRef Name="team_name" />
+          </Key>
+          <Property Name="team_name" Type="String" MaxLength="40" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="team_type" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="country_id" Type="Int32" />
+          <Property Name="sport_id" Type="Int32" />
+          <NavigationProperty Name="country" Relationship="Self.FK_country_team" FromRole="team" ToRole="country" />
+          <NavigationProperty Name="product" Relationship="Self.FK_product_team" FromRole="team" ToRole="product" />
+          <NavigationProperty Name="sport" Relationship="Self.FK_sport_team" FromRole="team" ToRole="sport" />
+        </EntityType>
+        <Association Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="AspNetUserClaims" Type="Self.AspNetUserClaims" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserClaims">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="AspNetUserLogins" Type="Self.AspNetUserLogins" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserLogins">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_order_user">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1" />
+          <End Role="orders" Type="Self.orders" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="orders">
+              <PropertyRef Name="order_user" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_brands_product">
+          <End Role="brands" Type="Self.brands" Multiplicity="0..1" />
+          <End Role="product" Type="Self.product" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="brands">
+              <PropertyRef Name="brands_name" />
+            </Principal>
+            <Dependent Role="product">
+              <PropertyRef Name="brands_name" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_cart_items_order_id">
+          <End Role="orders" Type="Self.orders" Multiplicity="0..1" />
+          <End Role="cart_items" Type="Self.cart_items" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="orders">
+              <PropertyRef Name="order_id" />
+            </Principal>
+            <Dependent Role="cart_items">
+              <PropertyRef Name="order_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_cart_items_product_id">
+          <End Role="product" Type="Self.product" Multiplicity="1" />
+          <End Role="cart_items" Type="Self.cart_items" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="product">
+              <PropertyRef Name="product_id" />
+            </Principal>
+            <Dependent Role="cart_items">
+              <PropertyRef Name="product_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_category">
+          <End Role="category" Type="Self.category" Multiplicity="0..1" />
+          <End Role="subcategory" Type="Self.subcategory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="category">
+              <PropertyRef Name="category_name" />
+            </Principal>
+            <Dependent Role="subcategory">
+              <PropertyRef Name="category_name" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_continent">
+          <End Role="continent" Type="Self.continent" Multiplicity="0..1" />
+          <End Role="competition" Type="Self.competition" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="continent">
+              <PropertyRef Name="continent_id" />
+            </Principal>
+            <Dependent Role="competition">
+              <PropertyRef Name="continent_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_country">
+          <End Role="country" Type="Self.country" Multiplicity="0..1" />
+          <End Role="competition" Type="Self.competition" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="country">
+              <PropertyRef Name="country_id" />
+            </Principal>
+            <Dependent Role="competition">
+              <PropertyRef Name="country_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_product_competition">
+          <End Role="competition" Type="Self.competition" Multiplicity="0..1" />
+          <End Role="product" Type="Self.product" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="competition">
+              <PropertyRef Name="competition_name" />
+            </Principal>
+            <Dependent Role="product">
+              <PropertyRef Name="competition_name" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_sport">
+          <End Role="sport" Type="Self.sport" Multiplicity="0..1" />
+          <End Role="competition" Type="Self.competition" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="sport">
+              <PropertyRef Name="sport_id" />
+            </Principal>
+            <Dependent Role="competition">
+              <PropertyRef Name="sport_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_continent_country">
+          <End Role="continent" Type="Self.continent" Multiplicity="0..1" />
+          <End Role="country" Type="Self.country" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="continent">
+              <PropertyRef Name="continent_id" />
+            </Principal>
+            <Dependent Role="country">
+              <PropertyRef Name="continent_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_country_team">
+          <End Role="country" Type="Self.country" Multiplicity="0..1" />
+          <End Role="team" Type="Self.team" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="country">
+              <PropertyRef Name="country_id" />
+            </Principal>
+            <Dependent Role="team">
+              <PropertyRef Name="country_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_order_country">
+          <End Role="country" Type="Self.country" Multiplicity="0..1" />
+          <End Role="orders" Type="Self.orders" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="country">
+              <PropertyRef Name="country_id" />
+            </Principal>
+            <Dependent Role="orders">
+              <PropertyRef Name="order_country" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_product_id">
+          <End Role="product" Type="Self.product" Multiplicity="1" />
+          <End Role="images" Type="Self.images" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="product">
+              <PropertyRef Name="product_id" />
+            </Principal>
+            <Dependent Role="images">
+              <PropertyRef Name="product_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_product_subcategory">
+          <End Role="subcategory" Type="Self.subcategory" Multiplicity="0..1" />
+          <End Role="product" Type="Self.product" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="subcategory">
+              <PropertyRef Name="subcategory_name" />
+            </Principal>
+            <Dependent Role="product">
+              <PropertyRef Name="subcategory_name" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_product_team">
+          <End Role="team" Type="Self.team" Multiplicity="0..1" />
+          <End Role="product" Type="Self.product" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="team">
+              <PropertyRef Name="team_name" />
+            </Principal>
+            <Dependent Role="product">
+              <PropertyRef Name="team_name" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_sport_team">
+          <End Role="sport" Type="Self.sport" Multiplicity="0..1" />
+          <End Role="team" Type="Self.team" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="sport">
+              <PropertyRef Name="sport_id" />
+            </Principal>
+            <Dependent Role="team">
+              <PropertyRef Name="sport_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="AspNetUserRoles">
+          <End Role="AspNetRoles" Type="Self.AspNetRoles" Multiplicity="*" />
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="*" />
+        </Association>
+        <EntityContainer Name="finalbootstrap_dbEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="C__MigrationHistory" EntityType="Self.C__MigrationHistory" />
+          <EntitySet Name="AspNetRoles" EntityType="Self.AspNetRoles" />
+          <EntitySet Name="AspNetUserClaims" EntityType="Self.AspNetUserClaims" />
+          <EntitySet Name="AspNetUserLogins" EntityType="Self.AspNetUserLogins" />
+          <EntitySet Name="AspNetUsers" EntityType="Self.AspNetUsers" />
+          <EntitySet Name="brands" EntityType="Self.brands" />
+          <EntitySet Name="cart_items" EntityType="Self.cart_items" />
+          <EntitySet Name="category" EntityType="Self.category" />
+          <EntitySet Name="competition" EntityType="Self.competition" />
+          <EntitySet Name="continent" EntityType="Self.continent" />
+          <EntitySet Name="country" EntityType="Self.country" />
+          <EntitySet Name="images" EntityType="Self.images" />
+          <EntitySet Name="orders" EntityType="Self.orders" />
+          <EntitySet Name="product" EntityType="Self.product" />
+          <EntitySet Name="sport" EntityType="Self.sport" />
+          <EntitySet Name="subcategory" EntityType="Self.subcategory" />
+          <EntitySet Name="team" EntityType="Self.team" />
+          <AssociationSet Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="AspNetUserClaims" EntitySet="AspNetUserClaims" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="AspNetUserLogins" EntitySet="AspNetUserLogins" />
+          </AssociationSet>
+          <AssociationSet Name="FK_order_user" Association="Self.FK_order_user">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="orders" EntitySet="orders" />
+          </AssociationSet>
+          <AssociationSet Name="FK_brands_product" Association="Self.FK_brands_product">
+            <End Role="brands" EntitySet="brands" />
+            <End Role="product" EntitySet="product" />
+          </AssociationSet>
+          <AssociationSet Name="FK_cart_items_order_id" Association="Self.FK_cart_items_order_id">
+            <End Role="orders" EntitySet="orders" />
+            <End Role="cart_items" EntitySet="cart_items" />
+          </AssociationSet>
+          <AssociationSet Name="FK_cart_items_product_id" Association="Self.FK_cart_items_product_id">
+            <End Role="product" EntitySet="product" />
+            <End Role="cart_items" EntitySet="cart_items" />
+          </AssociationSet>
+          <AssociationSet Name="FK_category" Association="Self.FK_category">
+            <End Role="category" EntitySet="category" />
+            <End Role="subcategory" EntitySet="subcategory" />
+          </AssociationSet>
+          <AssociationSet Name="FK_continent" Association="Self.FK_continent">
+            <End Role="continent" EntitySet="continent" />
+            <End Role="competition" EntitySet="competition" />
+          </AssociationSet>
+          <AssociationSet Name="FK_country" Association="Self.FK_country">
+            <End Role="country" EntitySet="country" />
+            <End Role="competition" EntitySet="competition" />
+          </AssociationSet>
+          <AssociationSet Name="FK_product_competition" Association="Self.FK_product_competition">
+            <End Role="competition" EntitySet="competition" />
+            <End Role="product" EntitySet="product" />
+          </AssociationSet>
+          <AssociationSet Name="FK_sport" Association="Self.FK_sport">
+            <End Role="sport" EntitySet="sport" />
+            <End Role="competition" EntitySet="competition" />
+          </AssociationSet>
+          <AssociationSet Name="FK_continent_country" Association="Self.FK_continent_country">
+            <End Role="continent" EntitySet="continent" />
+            <End Role="country" EntitySet="country" />
+          </AssociationSet>
+          <AssociationSet Name="FK_country_team" Association="Self.FK_country_team">
+            <End Role="country" EntitySet="country" />
+            <End Role="team" EntitySet="team" />
+          </AssociationSet>
+          <AssociationSet Name="FK_order_country" Association="Self.FK_order_country">
+            <End Role="country" EntitySet="country" />
+            <End Role="orders" EntitySet="orders" />
+          </AssociationSet>
+          <AssociationSet Name="FK_product_id" Association="Self.FK_product_id">
+            <End Role="product" EntitySet="product" />
+            <End Role="images" EntitySet="images" />
+          </AssociationSet>
+          <AssociationSet Name="FK_product_subcategory" Association="Self.FK_product_subcategory">
+            <End Role="subcategory" EntitySet="subcategory" />
+            <End Role="product" EntitySet="product" />
+          </AssociationSet>
+          <AssociationSet Name="FK_product_team" Association="Self.FK_product_team">
+            <End Role="team" EntitySet="team" />
+            <End Role="product" EntitySet="product" />
+          </AssociationSet>
+          <AssociationSet Name="FK_sport_team" Association="Self.FK_sport_team">
+            <End Role="sport" EntitySet="sport" />
+            <End Role="team" EntitySet="team" />
+          </AssociationSet>
+          <AssociationSet Name="AspNetUserRoles" Association="Self.AspNetUserRoles">
+            <End Role="AspNetRoles" EntitySet="AspNetRoles" />
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="finalbootstrap_dbModelStoreContainer" CdmEntityContainer="finalbootstrap_dbEntities">
+          <EntitySetMapping Name="C__MigrationHistory">
+            <EntityTypeMapping TypeName="finalbootstrap_dbModel.C__MigrationHistory">
+              <MappingFragment StoreEntitySet="__MigrationHistory">
+                <ScalarProperty Name="MigrationId" ColumnName="MigrationId" />
+                <ScalarProperty Name="ContextKey" ColumnName="ContextKey" />
+                <ScalarProperty Name="Model" ColumnName="Model" />
+                <ScalarProperty Name="ProductVersion" ColumnName="ProductVersion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AspNetRoles">
+            <EntityTypeMapping TypeName="finalbootstrap_dbModel.AspNetRoles">
+              <MappingFragment StoreEntitySet="AspNetRoles">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AspNetUserClaims">
+            <EntityTypeMapping TypeName="finalbootstrap_dbModel.AspNetUserClaims">
+              <MappingFragment StoreEntitySet="AspNetUserClaims">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="ClaimType" ColumnName="ClaimType" />
+                <ScalarProperty Name="ClaimValue" ColumnName="ClaimValue" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AspNetUserLogins">
+            <EntityTypeMapping TypeName="finalbootstrap_dbModel.AspNetUserLogins">
+              <MappingFragment StoreEntitySet="AspNetUserLogins">
+                <ScalarProperty Name="LoginProvider" ColumnName="LoginProvider" />
+                <ScalarProperty Name="ProviderKey" ColumnName="ProviderKey" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AspNetUsers">
+            <EntityTypeMapping TypeName="finalbootstrap_dbModel.AspNetUsers">
+              <MappingFragment StoreEntitySet="AspNetUsers">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="EmailConfirmed" ColumnName="EmailConfirmed" />
+                <ScalarProperty Name="PasswordHash" ColumnName="PasswordHash" />
+                <ScalarProperty Name="SecurityStamp" ColumnName="SecurityStamp" />
+                <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+                <ScalarProperty Name="PhoneNumberConfirmed" ColumnName="PhoneNumberConfirmed" />
+                <ScalarProperty Name="TwoFactorEnabled" ColumnName="TwoFactorEnabled" />
+                <ScalarProperty Name="LockoutEndDateUtc" ColumnName="LockoutEndDateUtc" />
+                <ScalarProperty Name="LockoutEnabled" ColumnName="LockoutEnabled" />
+                <ScalarProperty Name="AccessFailedCount" ColumnName="AccessFailedCount" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="images_path" ColumnName="images_path" />
+                <ScalarProperty Name="user_status" ColumnName="user_status" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="brands">
+            <EntityTypeMapping TypeName="finalbootstrap_dbModel.brands">
+              <MappingFragment StoreEntitySet="brands">
+                <ScalarProperty Name="brands_name" ColumnName="brands_name" />
+                <ScalarProperty Name="brand_image_path" ColumnName="brand_image_path" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="cart_items">
+            <EntityTypeMapping TypeName="finalbootstrap_dbModel.cart_items">
+              <MappingFragment StoreEntitySet="cart_items">
+                <ScalarProperty Name="cart_items_id" ColumnName="cart_items_id" />
+                <ScalarProperty Name="cart_items_quantity" ColumnName="cart_items_quantity" />
+                <ScalarProperty Name="product_id" ColumnName="product_id" />
+                <ScalarProperty Name="cart_items_insertdate" ColumnName="cart_items_insertdate" />
+                <ScalarProperty Name="cart_items_unit_price" ColumnName="cart_items_unit_price" />
+                <ScalarProperty Name="cart_items_subtotal" ColumnName="cart_items_subtotal" />
+                <ScalarProperty Name="order_id" ColumnName="order_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="category">
+            <EntityTypeMapping TypeName="finalbootstrap_dbModel.category">
+              <MappingFragment StoreEntitySet="category">
+                <ScalarProperty Name="category_name" ColumnName="category_name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="competition">
+            <EntityTypeMapping TypeName="finalbootstrap_dbModel.competition">
+              <MappingFragment StoreEntitySet="competition">
+                <ScalarProperty Name="competition_name" ColumnName="competition_name" />
+                <ScalarProperty Name="competition_type" ColumnName="competition_type" />
+                <ScalarProperty Name="country_id" ColumnName="country_id" />
+                <ScalarProperty Name="sport_id" ColumnName="sport_id" />
+                <ScalarProperty Name="continent_id" ColumnName="continent_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="continent">
+            <EntityTypeMapping TypeName="finalbootstrap_dbModel.continent">
+              <MappingFragment StoreEntitySet="continent">
+                <ScalarProperty Name="continent_id" ColumnName="continent_id" />
+                <ScalarProperty Name="continent_name" ColumnName="continent_name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="country">
+            <EntityTypeMapping TypeName="finalbootstrap_dbModel.country">
+              <MappingFragment StoreEntitySet="country">
+                <ScalarProperty Name="country_id" ColumnName="country_id" />
+                <ScalarProperty Name="country_name" ColumnName="country_name" />
+                <ScalarProperty Name="country_dim" ColumnName="country_dim" />
+                <ScalarProperty Name="continent_id" ColumnName="continent_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="images">
+            <EntityTypeMapping TypeName="finalbootstrap_dbModel.images">
+              <MappingFragment StoreEntitySet="images">
+                <ScalarProperty Name="images_id" ColumnName="images_id" />
+                <ScalarProperty Name="images_path" ColumnName="images_path" />
+                <ScalarProperty Name="product_id" ColumnName="product_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="orders">
+            <EntityTypeMapping TypeName="finalbootstrap_dbModel.orders">
+              <MappingFragment StoreEntitySet="orders">
+                <ScalarProperty Name="order_datetime_finish" ColumnName="order_datetime_finish" />
+                <ScalarProperty Name="order_id" ColumnName="order_id" />
+                <ScalarProperty Name="shipper_type" ColumnName="shipper_type" />
+                <ScalarProperty Name="order_total" ColumnName="order_total" />
+                <ScalarProperty Name="order_amount" ColumnName="order_amount" />
+                <ScalarProperty Name="order_name" ColumnName="order_name" />
+                <ScalarProperty Name="order_address" ColumnName="order_address" />
+                <ScalarProperty Name="order_zipcode" ColumnName="order_zipcode" />
+                <ScalarProperty Name="order_city" ColumnName="order_city" />
+                <ScalarProperty Name="order_phone" ColumnName="order_phone" />
+                <ScalarProperty Name="order_nif" ColumnName="order_nif" />
+                <ScalarProperty Name="order_datetime" ColumnName="order_datetime" />
+                <ScalarProperty Name="order_user" ColumnName="order_user" />
+                <ScalarProperty Name="payment_type" ColumnName="payment_type" />
+                <ScalarProperty Name="order_country" ColumnName="order_country" />
+                <ScalarProperty Name="order_status" ColumnName="order_status" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="product">
+            <EntityTypeMapping TypeName="finalbootstrap_dbModel.product">
+              <MappingFragment StoreEntitySet="product">
+                <ScalarProperty Name="product_mainimage" ColumnName="product_mainimage" />
+                <ScalarProperty Name="product_name" ColumnName="product_name" />
+                <ScalarProperty Name="product_price" ColumnName="product_price" />
+                <ScalarProperty Name="product_weight" ColumnName="product_weight" />
+                <ScalarProperty Name="product_letter_size" ColumnName="product_letter_size" />
+                <ScalarProperty Name="product_number_size" ColumnName="product_number_size" />
+                <ScalarProperty Name="product_qtd" ColumnName="product_qtd" />
+                <ScalarProperty Name="product_comment" ColumnName="product_comment" />
+                <ScalarProperty Name="product_datetime" ColumnName="product_datetime" />
+                <ScalarProperty Name="product_id" ColumnName="product_id" />
+                <ScalarProperty Name="product_year" ColumnName="product_year" />
+                <ScalarProperty Name="product_type" ColumnName="product_type" />
+                <ScalarProperty Name="brands_name" ColumnName="brands_name" />
+                <ScalarProperty Name="product_player_name" ColumnName="product_player_name" />
+                <ScalarProperty Name="competition_name" ColumnName="competition_name" />
+                <ScalarProperty Name="team_name" ColumnName="team_name" />
+                <ScalarProperty Name="subcategory_name" ColumnName="subcategory_name" />
+                <ScalarProperty Name="product_status" ColumnName="product_status" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sport">
+            <EntityTypeMapping TypeName="finalbootstrap_dbModel.sport">
+              <MappingFragment StoreEntitySet="sport">
+                <ScalarProperty Name="sport_id" ColumnName="sport_id" />
+                <ScalarProperty Name="sport_name" ColumnName="sport_name" />
+                <ScalarProperty Name="sport_type" ColumnName="sport_type" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="subcategory">
+            <EntityTypeMapping TypeName="finalbootstrap_dbModel.subcategory">
+              <MappingFragment StoreEntitySet="subcategory">
+                <ScalarProperty Name="subcategory_name" ColumnName="subcategory_name" />
+                <ScalarProperty Name="category_name" ColumnName="category_name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="team">
+            <EntityTypeMapping TypeName="finalbootstrap_dbModel.team">
+              <MappingFragment StoreEntitySet="team">
+                <ScalarProperty Name="team_name" ColumnName="team_name" />
+                <ScalarProperty Name="team_type" ColumnName="team_type" />
+                <ScalarProperty Name="country_id" ColumnName="country_id" />
+                <ScalarProperty Name="sport_id" ColumnName="sport_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <AssociationSetMapping Name="AspNetUserRoles" TypeName="finalbootstrap_dbModel.AspNetUserRoles" StoreEntitySet="AspNetUserRoles">
+            <EndProperty Name="AspNetRoles">
+              <ScalarProperty Name="Id" ColumnName="RoleId" />
+            </EndProperty>
+            <EndProperty Name="AspNetUsers">
+              <ScalarProperty Name="Id" ColumnName="UserId" />
+            </EndProperty>
+          </AssociationSetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

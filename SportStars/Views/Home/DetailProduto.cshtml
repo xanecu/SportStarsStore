@@ -1,0 +1,193 @@
+﻿@using SportStars.Models
+@model SportStars.Models.product
+
+@{
+    ViewBag.Title = "Detail Produto";
+    Layout = null;
+}
+<head>
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+</head>
+
+
+<div class="container">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header text-center">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h2 style="text-shadow:3px 2px 5px gray">@ViewBag.Title</h2>
+            </div>
+            <div class="modal-body">
+                <hr />
+                <dl class="dl-horizontal">
+                    <dt>
+                        @Html.DisplayNameFor(model => model.product_id)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.product_id)
+                    </dd>
+
+                    <dt>
+                        @Html.DisplayNameFor(model => model.product_status)
+                    </dt>
+
+                    <dd>
+
+                        @if (Model.product_status.Equals("Disponível"))
+                        {
+                            <i style="color:green" class="fas fa-certificate" title="Disponível"></i>
+
+                        }
+                        else if (Model.product_status.Equals("Indisponível"))
+                        {
+                            <i style="color:red" class="fas fa-certificate" title="Indisponível"></i>
+                        }
+
+
+                    </dd>
+
+
+                    <dt>
+                        @Html.DisplayNameFor(model => model.product_name)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.product_name)
+                    </dd>
+
+                    <dt>
+                        @Html.DisplayNameFor(model => model.product_price)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.product_price)
+                    </dd>
+
+                    <dt>
+                        @Html.DisplayNameFor(model => model.product_qtd)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.product_qtd)
+                    </dd>
+
+                    <dt>
+                        @Html.DisplayNameFor(model => model.product_number_size)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.product_number_size)
+                    </dd>
+
+                    <dt>
+                        @Html.DisplayNameFor(model => model.product_letter_size)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.product_letter_size)
+                    </dd>
+
+                    <dt>
+                        @Html.DisplayNameFor(model => model.product_weight)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.product_weight)
+                    </dd>
+
+                    <dt>
+                        @Html.DisplayNameFor(model => model.product_year)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.product_year)
+                    </dd>
+
+                    <dt>
+                        @Html.DisplayNameFor(model => model.product_type)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.product_type)
+                    </dd>
+
+                    <dt>
+                        @Html.DisplayNameFor(model => model.brands_name)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.brands_name)
+                    </dd>
+
+                    <dt>
+                        @Html.DisplayNameFor(model => model.competition_name)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.competition_name)
+                    </dd>
+
+                    <dt>
+                        @Html.DisplayNameFor(model => model.team_name)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.team_name)
+                    </dd>
+
+                    <dt>
+                        @Html.DisplayNameFor(model => model.product_player_name)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.product_player_name)
+                    </dd>
+
+                    <dt>
+                        @Html.DisplayNameFor(model => model.product_comment)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.product_comment)
+                    </dd>
+
+                    <dt>
+                        @Html.DisplayNameFor(model => model.product_datetime)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.product_datetime)
+                    </dd>
+
+                    <dt>
+                        @Html.DisplayNameFor(model => model.subcategory_name)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.subcategory_name)
+                    </dd>
+
+                    <dt>
+                        @Html.DisplayNameFor(model => model.product_mainimage)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.product_mainimage)
+                    </dd>
+
+
+                </dl>
+                <hr />
+            </div>
+
+            <div class="modal-footer">
+
+                <a href="@Url.Action("EditProduto", "Home", new { id = Model.product_id})" class="btn btn-primary">Edit <i class="glyphicon glyphicon-edit"></i></a>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>

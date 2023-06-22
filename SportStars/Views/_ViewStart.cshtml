@@ -1,0 +1,27 @@
+﻿
+
+@{
+    if (User.IsInRole("Admin"))
+    {
+        Layout = "~/Views/Shared/_AdminLayout.cshtml";
+    }
+    else
+    {
+        Layout = "~/Views/Shared/_Layout.cshtml";
+    }
+}
+
+
+@*@using Microsoft.AspNet.Identity
+
+@if (Request.IsAuthenticated)
+    {
+    if (User.IsInRole("Admin"))
+    {
+        Layout = "~/views/shared/_LayoutAuthentication.cshtml";
+    }
+    else
+    {
+        Layout = "~/Views/shared/_Layout.cshtml";
+    }
+}*@

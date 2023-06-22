@@ -1,0 +1,631 @@
+﻿@using SportStars.Controllers;
+@model SportStars.Models.product
+
+@{
+    ViewBag.Title = "Edit Produto";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<header class="text-center" style="padding:5px">
+    <h2 style="text-shadow:3px 2px 5px gray">@ViewBag.Title</h2>
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+</header>
+<hr />
+
+@using (Html.BeginForm("EditProduto", "Home", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+    <section class="container-fluid">
+        <div class="row">
+            <div class="col-md-6">
+                <fieldset>
+                    <legend>General details</legend>
+
+                    <div class="form-group col-md-6">
+                        <label>Product Id</label>
+                        <div class="input-group">
+                            <span class="input-group-addon"><i class="glyphicon glyphicon-bookmark"></i></span>
+                            @Html.EditorFor(model => model.product_id, new { htmlAttributes = new { @class = "form-control", @disabled = "true" } })
+
+                        </div>
+                        @Html.ValidationMessageFor(model => model.product_id, "", new { @class = "text-danger" })
+                    </div>
+
+                    <div class="form-group col-md-6">
+                        <label>Product Name *</label>
+                        <div class="input-group">
+                            <span class="input-group-addon"><i class="glyphicon glyphicon-tags"></i></span>
+                            @Html.EditorFor(model => model.product_name, new { htmlAttributes = new { @class = "form-control", @placeholder = "Name" } })
+
+                        </div>
+                        @Html.ValidationMessageFor(model => model.product_name, "", new { @class = "text-danger" })
+                    </div>
+
+                    <div class="form-group col-md-6">
+                        <label>Product Price *</label>
+                        <div class="input-group">
+                            <span class="input-group-addon"><i class="glyphicon glyphicon-eur"></i></span>
+                            @Html.EditorFor(model => model.product_price, new { htmlAttributes = new { @class = "form-control", @placeholder = "0.00" } })
+
+                        </div>
+                        @Html.ValidationMessageFor(model => model.product_price, null, new { @class = "text-danger" })
+                    </div>
+
+                    <div class="form-group col-md-6">
+                        <label>Product Weight</label>
+                        <div class="input-group">
+                            <span class="input-group-addon"><i class="glyphicon glyphicon-scale"></i></span>
+                            @Html.EditorFor(model => model.product_weight, new { htmlAttributes = new { @class = "form-control", @placeholder = "Ex. in grams: 500" } })
+
+                        </div>
+
+                        @Html.ValidationMessageFor(model => model.product_weight, "", new { @class = "text-danger" })
+                    </div>
+
+                    <div class="form-group col-md-6">
+                        <label>Letter Size</label>
+                        <div>
+                            @Html.RadioButtonFor(model => model.product_letter_size, HomeController.LETTER_SIZE.XS)
+                            <span>@HomeController.LETTER_SIZE.XS</span>
+                            @Html.RadioButtonFor(model => model.product_letter_size, HomeController.LETTER_SIZE.S)
+                            <span>@HomeController.LETTER_SIZE.S</span>
+                            @Html.RadioButtonFor(model => model.product_letter_size, HomeController.LETTER_SIZE.M)
+                            <span>@HomeController.LETTER_SIZE.M</span>
+                            @Html.RadioButtonFor(model => model.product_letter_size, HomeController.LETTER_SIZE.L)
+                            <span>@HomeController.LETTER_SIZE.L</span>
+                            @Html.RadioButtonFor(model => model.product_letter_size, HomeController.LETTER_SIZE.XL)
+                            <span>@HomeController.LETTER_SIZE.XL</span>
+                            @*@Html.EditorFor(model => model.product_letter_size, new { htmlAttributes = new { @class = "form-control" } })*@
+                            @*@Html.DropDownListFor(model => model.product_letter_size, EnumHelper.GetSelectList(typeof(HomeController.LETTER_SIZE)), new { @class = "form-control" })*@
+                            @Html.ValidationMessageFor(model => model.product_letter_size, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group col-md-6">
+                        <label>Number Size</label>
+                        <div class="input-group">
+                            <span class="input-group-addon"><i class="glyphicon glyphicon-pencil"></i></span>
+                            @*@Html.EditorFor(model => model.product_number_size, new { htmlAttributes = new { @class = "form-control" } })*@
+                            @Html.DropDownListFor(model => model.product_number_size, Enumerable.Range(30, 31).Select(i => new SelectListItem { Text = i.ToString(), Value = i.ToString() }), "", new { @class = "form-control" })
+
+                        </div>
+                        @Html.ValidationMessageFor(model => model.product_number_size, "", new { @class = "text-danger" })
+                    </div>
+
+                    <div class="form-group col-md-6">
+                        <label>Product Year</label>
+                        <div class="input-group">
+                            <span class="input-group-addon"><i class="fas fa-calendar-alt"></i></span>
+                            @Html.EditorFor(model => model.product_year, new { htmlAttributes = new { @class = "form-control", @placeholder = "Ex. 1958" } })
+
+                        </div>
+                        <span class="col-md-12"><small style="color:gray"> * Must be between 1900 and actual year</small></span>
+                        @Html.ValidationMessageFor(model => model.product_year, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label>Product Datetime</label>
+                        <div class="input-group">
+                            <span class="input-group-addon"><i class="glyphicon glyphicon-cloud-upload"></i></span>
+                            @Html.EditorFor(model => model.product_datetime, new { htmlAttributes = new { @class = "form-control", @disabled = "true" } })
+
+                        </div>
+                        <span class="col-md-12"><small style="color:gray"> * Inserted datetime</small></span>
+                        @Html.ValidationMessageFor(model => model.product_datetime, "", new { @class = "text-danger" })
+                    </div>
+
+                    <div class="form-group col-md-12">
+                        <label>Product Type</label>
+                        <div>
+                            @*@Html.DropDownListFor(model => model.product_type, EnumHelper.GetSelectList(typeof(HomeController.PRODUCT_TYPE)), new { @class = "form-control" })*@
+                            @Html.RadioButtonFor(model => model.product_type, HomeController.PRODUCT_TYPE.Retro)
+                            <span>@HomeController.PRODUCT_TYPE.Retro</span>
+                            @Html.RadioButtonFor(model => model.product_type, HomeController.PRODUCT_TYPE.Vintage)
+                            <span>@HomeController.PRODUCT_TYPE.Vintage</span>
+                            @Html.ValidationMessageFor(model => model.product_type, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-inline">
+                        <div class="form-group col-md-6">
+                            <label>Product Quantity *</label>
+                            @*@Html.LabelFor(model => model.product_qtd, htmlAttributes: new { @class = "control-label col-md-2" })*@
+                            <div>
+                                @Html.EditorFor(model => model.product_qtd, new { htmlAttributes = new { @class = "form-control" } })
+
+                            </div>
+                            @Html.ValidationMessageFor(model => model.product_qtd, "", new { @class = "text-danger" })
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label>Product Status *</label>
+                            <div>
+                                @Html.RadioButtonFor(model => model.product_status, HomeController.PRODUCT_STATUS.Disponível)
+                                <span>@HomeController.PRODUCT_STATUS.Disponível</span>
+                                @Html.RadioButtonFor(model => model.product_status, HomeController.PRODUCT_STATUS.Indisponível)
+                                <span>@HomeController.PRODUCT_STATUS.Indisponível</span>
+
+                            </div>
+                            @Html.ValidationMessageFor(model => model.product_status, "", new { @class = "text-danger" })
+                        </div>
+
+
+                    </div>
+
+                </fieldset>
+
+                <br />
+            </div>
+
+
+            <div class="col-md-6">
+                <fieldset>
+                    <legend>Extra details</legend>
+                    <div class="text-center col-md-12">
+                        <div class="form-group col-md-6">
+                            <label>Main image</label>
+                            <div>
+                                @{
+                                    string cam = (Model.product_mainimage != null) ? Model.product_mainimage : "~/Images.products/nophoto.jpg";
+
+                                }
+                                <img src=@Url.Content(cam) id="foto" style="height:120px;" alt="Main Image" />
+
+                                <input style="margin:auto" type="file" class="form-control" name="mainfich" id="mainfich" onchange="previewFile(this);" />
+                            </div>
+
+                        </div>
+
+                        <div class="form-group col-md-6">
+                            <label>Extra images</label>
+                            <div>
+                                <img src="" style="width:200px" id="foto" />
+                                <input style="margin:auto" type="file" class="form-control" name="fich" multiple id="fich" onchange="previewFile(this);" disabled />
+
+                            </div>
+                            <span><small style="color:gray;">*Allows multiple pictures</small></span>
+                        </div>
+                    </div>
+
+                    <div class="form-group col-md-6">
+                        <label>Category</label>
+                        <div class="input-group">
+                            <span class="input-group-addon"><i class="glyphicon glyphicon-list-alt"></i></span>
+                            @*@Html.EditorFor(model => model.category_name, new { htmlAttributes = new { @class = "form-control" } })*@
+                            @Html.DropDownList("category_name", ViewBag.categories as SelectList, "", new { id = "dd_cat", @class = "form-control" })
+
+
+                        </div>
+                        <span style="color:gray;"><small>* Just for filtering <strong>Subcategory</strong></small></span>
+                        @Html.ValidationMessage("category_name", "", new { @class = "text-danger" })
+                        @*@Html.ValidationMessageFor(model => model.subcategory_name, "", new { @class = "text-danger" })*@
+
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label>Subcategory</label>
+                        <div>
+
+                            @*@Html.EditorFor(model => model.category_name, new { htmlAttributes = new { @class = "form-control" } })*@
+                            @Html.DropDownListFor(model => model.subcategory_name, ViewBag.subcategories as SelectList, "", new { id = "dd_subcat", @class = "form-control" })
+
+                        </div>
+                        @Html.ValidationMessageFor(model => model.subcategory_name, "", new { @class = "text-danger" })
+
+                    </div>
+
+                    <div class="form-group col-md-12">
+                        <label>Brand</label>
+                        <div>
+                            @*@Html.EditorFor(model => model.brands_name, new { htmlAttributes = new { @class = "form-control" } })*@
+                            @Html.DropDownListFor(model => model.brands_name, ViewBag.brands as SelectList, new { @class = "form-control" })
+
+                        </div>
+                        @Html.ValidationMessageFor(model => model.brands_name, "", new { @class = "text-danger" })
+                    </div>
+
+                    <div class="form-group col-md-12">
+                        <label>Competition</label>
+                        <div class="input-group col-md-6">
+                            <span class="input-group-addon"><i class="fas fa-medal"></i></span>
+                            @*@Html.EditorFor(model => model.competition_name, new { htmlAttributes = new { @class = "form-control" } })*@
+                            @Html.DropDownListFor(model => model.competition_name, ViewBag.competitions as SelectList, "", new { id = "dd_comp", @class = "form-control" })
+
+                        </div>
+                        @Html.ValidationMessageFor(model => model.competition_name, "", new { @class = "text-danger" })
+                        <a aria-controls="collapse_filter_comp" aria-expanded="false" data-toggle="collapse" href="#collapse_filter_comp"><i class="glyphicon glyphicon-filter"></i> Filter</a>
+                    </div>
+
+                    <div class="collapse col-md-12" id="collapse_filter_comp" style="border-radius:3px;background-color:#b7b7b7">
+
+                        <div class="form-group col-md-4">
+                            <label>Sport</label>
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="glyphicon glyphicon-list-alt"></i></span>
+                                @*@Html.EditorFor(model => model.category_name, new { htmlAttributes = new { @class = "form-control" } })*@
+                                @Html.DropDownList("sport_name", ViewBag.sports as SelectList, "", new { id = "dd_sport", @class = "form-control" })
+
+
+                            </div>
+
+                            @Html.ValidationMessage("sport_name", "", new { @class = "text-danger" })
+                            @*@Html.ValidationMessageFor(model => model.subcategory_name, "", new { @class = "text-danger" })*@
+
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label>Continent</label>
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="glyphicon glyphicon-list-alt"></i></span>
+                                @*@Html.EditorFor(model => model.category_name, new { htmlAttributes = new { @class = "form-control" } })*@
+                                @Html.DropDownList("continent_name", ViewBag.continents as SelectList, "", new { id = "dd_continent", @class = "form-control" })
+
+
+                            </div>
+
+                            @Html.ValidationMessage("continent_name", "", new { @class = "text-danger" })
+                            @*@Html.ValidationMessageFor(model => model.subcategory_name, "", new { @class = "text-danger" })*@
+
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label>Country</label>
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="glyphicon glyphicon-list-alt"></i></span>
+                                @*@Html.EditorFor(model => model.category_name, new { htmlAttributes = new { @class = "form-control" } })*@
+                                @Html.DropDownList("country_name", ViewBag.countries as SelectList, "", new { id = "dd_country", @class = "form-control" })
+
+
+                            </div>
+
+                            @Html.ValidationMessage("country_name", "", new { @class = "text-danger" })
+                            @*@Html.ValidationMessageFor(model => model.subcategory_name, "", new { @class = "text-danger" })*@
+
+                        </div>
+                    </div>
+
+                    <div class="form-group col-md-12">
+                        <label>Team</label>
+                        <div class="input-group">
+                            <span class="input-group-addon"><i class="fas fa-tshirt"></i></span>
+                            @*@Html.EditorFor(model => model.team_name, new { htmlAttributes = new { @class = "form-control" } })*@
+                            @Html.DropDownListFor(model => model.team_name, ViewBag.teams as SelectList, "", new { id = "dd_team", @class = "form-control" })
+
+                        </div>
+                        @Html.ValidationMessageFor(model => model.team_name, "", new { @class = "text-danger" })
+                        <a aria-controls="collapse_filter_team" aria-expanded="false" data-toggle="collapse" href="#collapse_filter_team"><i class="glyphicon glyphicon-filter"></i> Filter</a>
+                    </div>
+
+                    <div class="collapse col-md-12" id="collapse_filter_team" style="border-radius:3px;background-color:#b7b7b7">
+                        <div class="form-group col-md-4">
+                            <label>Sport</label>
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="glyphicon glyphicon-list-alt"></i></span>
+                                @*@Html.EditorFor(model => model.category_name, new { htmlAttributes = new { @class = "form-control" } })*@
+                                @Html.DropDownList("sport_name", ViewBag.sports as SelectList, "", new { id = "dd_sport1", @class = "form-control" })
+
+
+                            </div>
+
+                            @Html.ValidationMessage("sport_name", "", new { @class = "text-danger" })
+                            @*@Html.ValidationMessageFor(model => model.subcategory_name, "", new { @class = "text-danger" })*@
+
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label>Continent</label>
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="glyphicon glyphicon-list-alt"></i></span>
+                                @*@Html.EditorFor(model => model.category_name, new { htmlAttributes = new { @class = "form-control" } })*@
+                                @Html.DropDownList("continent_name", ViewBag.continents as SelectList, "", new { id = "dd_continent1", @class = "form-control" })
+
+
+                            </div>
+
+                            @Html.ValidationMessage("continent_name", "", new { @class = "text-danger" })
+                            @*@Html.ValidationMessageFor(model => model.subcategory_name, "", new { @class = "text-danger" })*@
+
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label>Country</label>
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="glyphicon glyphicon-list-alt"></i></span>
+                                @*@Html.EditorFor(model => model.category_name, new { htmlAttributes = new { @class = "form-control" } })*@
+                                @Html.DropDownList("country_name", ViewBag.countries as SelectList, "", new { id = "dd_country1", @class = "form-control" })
+
+
+                            </div>
+
+                            @Html.ValidationMessage("country_name", "", new { @class = "text-danger" })
+                            @*@Html.ValidationMessageFor(model => model.subcategory_name, "", new { @class = "text-danger" })*@
+
+                        </div>
+                    </div>
+
+                    <div class="form-group col-md-12">
+                        <label>Player name</label>
+                        <div class="input-group">
+                            <span class="input-group-addon"><i class="far fa-futbol"></i></span>
+                            @Html.EditorFor(model => model.product_player_name, new { htmlAttributes = new { @class = "form-control" } })
+
+                        </div>
+                        @Html.ValidationMessageFor(model => model.product_player_name, "", new { @class = "text-danger" })
+                    </div>
+
+                    <hr />
+
+                </fieldset>
+            </div>
+
+        </div>
+        <hr />
+
+        <div class="form-group col-md-12">
+            <label>Product Comment</label>
+            <div>
+                @Html.TextAreaFor(model => model.product_comment, new { htmlAttributes = new { @class = "form-control" } })
+
+                @Html.ValidationMessageFor(model => model.product_comment, "", new { @class = "text-danger" })
+
+            </div>
+        </div>
+
+        
+
+    </section>
+    <hr />
+    <footer class="text-center" style="padding:15px">
+        <div class="form-group">
+            <input type="submit" value="Save" class="btn btn-default" />
+        </div>
+        <div>
+            @Html.ActionLink("Back to List", "Produtos", null, new { @class = "btn btn-warning" })
+        </div>
+    </footer>
+
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
+
+@section editafoto{
+    <script>
+        function previewFile(input) {
+
+            var file = $("input[type=file]").get(0).files[0];
+
+            if (file) {
+                var reader = new FileReader();
+
+                reader.onload = function () {
+                    $("#foto").attr("src", reader.result);
+                }
+
+                reader.readAsDataURL(file);
+            }
+        }
+
+
+    </script>
+
+
+}
+
+
+@section dropdown_cascade{
+    <script>//NESTE CASO DE EDIT NO GETJSON TIREI O HOME PQ JÁ O TINHA POR DEFEITO, AO CONTRARIO DO CREATE
+        //Category --> Subcategory*
+        $(document).ready(function () {
+            $("#dd_cat").change(function () {
+                var categoryId = $(this).val();
+                $.getJSON("../LoadSubCatBycategoryId", { categoryId: categoryId },
+                    function (classesData) {
+                        var select = $("#dd_subcat");
+                        select.empty();
+                        select.append($('<option/>', {
+                            text: ""
+                        }));
+                        $.each(classesData, function (index, itemData) {
+                            select.append($('<option/>', {
+                                text: itemData.Text
+                            }));
+                        });
+                    });
+            });
+        });
+    </script>
+    <script>
+        //Continent --> Country*
+        $(document).ready(function () {
+            $("#dd_continent, #dd_continent1").change(function () {
+                var continentId = $(this).val();
+                $.getJSON("../LoadCountryBycontinentId", { continentId: continentId },
+                    function (classesData) {
+                        var select = $("#dd_country,#dd_country1");
+                        select.empty();
+                        select.append($('<option/>', {
+                            value: null,
+                            text: ""
+                        }));
+                        $.each(classesData, function (index, itemData) {
+                            select.append($('<option/>', {
+                                value: itemData.Value,
+                                text: itemData.Text
+                            }));
+                        });
+                    });
+            });
+        });
+    </script>
+    <script>
+        //Sport + Continent + Country --> Competitions*
+        $(document).ready(function () {
+            $("#dd_sport, #dd_continent, #dd_country").change(function () {
+                var sportId = $("#dd_sport").val();
+                var continentId = $("#dd_continent").val();
+                var countryId = $("#dd_country").val();
+                $.getJSON("../LoadCompBythreeId", { sportId: sportId, continentId: continentId, countryId: countryId },
+                    function (classesData) {
+                        var select = $("#dd_comp");
+                        select.empty();
+                        select.append($('<option/>', {
+                            value: null,
+                            text: ""
+                        }));
+                        $.each(classesData, function (index, itemData) {
+                            select.append($('<option/>', {
+                                text: itemData.Text
+                            }));
+                        });
+                    });
+
+            });
+        });
+    </script>
+    <script>
+        //Sport + Country --> Teams*
+        $(document).ready(function () {
+            $("#dd_sport1, #dd_continent1, #dd_country1").change(function () {
+                var sportId = $("#dd_sport1").val();
+                var continentId = $("#dd_continent1").val();
+                var countryId = $("#dd_country1").val();
+                $.getJSON("../LoadTeamBytwoId", { sportId: sportId, countryId: countryId },
+                    function (classesData) {
+                        var select = $("#dd_team");
+                        select.empty();
+                        select.append($('<option/>', {
+                            value: null,
+                            text: ""
+                        }));
+                        $.each(classesData, function (index, itemData) {
+                            select.append($('<option/>', {
+                                text: itemData.Text
+                            }));
+                        });
+                    });
+
+            });
+        });
+
+            //FAZER PARA TEAMS E FAZER TESTES -> DE MANHÃ
+            //TARDE PARA VALIDAÇÕES E FINALIZAR O RESTO
+    </script>
+
+
+
+}
+
+@*@section valida {
+        <script>
+
+            $.validator.addMethod("alfa", function (valor, element) {
+                var regex = /Mod:\w+/g;
+                return this.optional(element) || regex.test(valor);
+            }, "Padrão Errado");
+
+
+            $("#frm").validate({
+                errorClass: 'help-block animation-slideDown', // You can change the animation class for a different entrance animation - check animations page
+                errorElement: 'div',
+                errorPlacement: function (error, e) {
+                    e.parents('.form-group > div').append(error);
+                },
+                highlight: function (e) {
+
+                    $(e).closest('.form-group').removeClass('has-success has-error').addClass('has-error');
+                    $(e).closest('.help-block').remove();
+                },
+                success: function (e) {
+                    e.closest('.form-group').removeClass('has-success has-error');
+                    e.closest('.help-block').remove();
+                },  // style
+
+
+                rules: {
+                    product_year: { required: true, range: [1900, 2021] },
+                    product_name: { alfa: true } //{email:true} para controlar email auto
+                },
+                messages: {
+                    product_year: { required: "Ano é obrigatório s", range: "Fora do range" }
+                }
+            });
+        </script>
+
+
+    }*@
+
+@*@section validaeditproduto{
+    <script>
+            //Pode-se usar função ou não, o resultado é o mesmo
+
+            $.validator.addMethod("alfa", function (valor, element) {
+                var regex = /^[0-9]{9}$/;
+                return this.optional(element) || regex.test(valor);
+            }, "Padrão errado, introduza 9 números");
+
+
+            //$.validator.addMethod("alfa", function (valor, element) {
+            //    var regex = /2000/g;
+            //    return this.optional(element) || regex.test(valor);
+
+            //}, "Padrão Errado");
+
+
+            //$.validator.addMethod("bravo", function (valor, element) {
+            //    let ano = parseInt(valor);
+            //    mydata = new Date();
+            //    anocorrente = mydata.getFullYear();
+
+            //    console.log(parseInt(anocorrente));
+            //    return this.optional(element) || (ano >= 1900 && ano <= 2021);
+
+            //},
+            //    "Padrão Errado");
+
+            $("#frm").validate({
+                errorClass: 'help-block animation-slideDown', // You can change the animation class for a different entrance animation - check animations page
+                errorElement: 'div',
+                errorPlacement: function (error, e) {
+                    e.parents('.form-group > div').append(error);
+                },
+                highlight: function (e) {
+
+                    $(e).closest('.form-group').removeClass('has-success has-error').addClass('has-error');
+                    $(e).closest('.help-block').remove();
+                },
+                success: function (e) {
+                    e.closest('.form-group').removeClass('has-success has-error');
+                    e.closest('.help-block').remove();
+                },  // style
+                rules: {
+                    Email: { required: true, email: true },
+                    PhoneNumber: { alfa: true },
+                    product_name: { required: true}
+                    //cilindrada: { required: true, number: true },
+                    //modelo1: { required: true, rangelength: [5, 23] },
+                    //potencia: { required: true, digits: true }
+
+                },
+                messages: {
+                    Email: { required: "Email é obrigatório!", email: "Email tem de ser válido" },
+
+                }
+
+            });
+
+
+    </script>*@
+
+

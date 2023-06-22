@@ -1,0 +1,66 @@
+﻿
+
+body {
+    padding-top: 50px;
+    padding-bottom: 50px;
+    background-color: white;
+}
+
+/* Set padding to keep content from hitting the edges */
+.body-content {
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+/* Override the default bootstrap behavior where horizontal description lists 
+   will truncate terms that are too long to fit in the left column 
+*/
+.dl-horizontal dt {
+    white-space: normal;
+}
+
+/* Set width on the form input elements since they're 100% wide by default */
+input,
+select,
+textarea {
+    max-width: 280px;
+}
+
+.table-hover > tbody > tr:hover {
+    background-color: #f5f5f5;
+    box-shadow: 0 4px 11px 0 rgba(0, 0, 0, 0.19);
+}
+
+td[data-href] {
+    cursor: pointer;
+}
+/*
+input:invalid {
+    border: 2px dashed red;
+}
+
+input:valid {
+    border: 2px solid black;
+}*/
+/* Colorize-zoom Container */
+/* [1] The container */
+.img-hover-zoom {
+    overflow: hidden; /* [1.2] Hide the overflowing of child elements */
+}
+
+    /* [2] Transition property for smooth transformation of images */
+    .img-hover-zoom img {
+        transition: transform 1.5s, filter 1.5s ease-in-out;
+        transform-origin: center center;
+        filter: brightness(100%);
+    }
+
+    /* [3] Finally, transforming the image when container gets hovered */
+    .img-hover-zoom:hover img {
+        filter: brightness(60%);
+        transform: scale(1.2);
+    }
+
+a {
+    text-decoration:none;
+}

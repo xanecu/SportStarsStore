@@ -1,0 +1,339 @@
+﻿@using SportStars.Controllers;
+@model SportStars.Models.AspNetUsers
+
+@{
+    ViewBag.Title = "Edit Customer";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<header class="text-center" style="padding:5px">
+    <h2 style="text-shadow:3px 2px 5px gray">@ViewBag.Title</h2>
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+</header>
+<hr />
+
+@using (Html.BeginForm("EditCustomer", "Home", FormMethod.Post, new { id = "frm", enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+    <section class="container-fluid">
+        <div class="row">
+            <div class="col-md-6">
+                <fieldset>
+                    <legend>General details</legend>
+
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label>Id</label>
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="glyphicon glyphicon-tag"></i></span>
+                                @Html.EditorFor(model => model.Id, new { htmlAttributes = new { @class = "form-control", @disabled = "true" } })
+
+                            </div>
+                            @Html.ValidationMessageFor(model => model.Id, "", new { @class = "text-danger" })
+                        </div>
+
+                        <div class="form-group">
+                            <label>Password Hash</label>
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
+                                @Html.EditorFor(model => model.PasswordHash, new { htmlAttributes = new { @class = "form-control", @disabled = "true" } })
+
+                            </div>
+                            @Html.ValidationMessageFor(model => model.PasswordHash, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <div class="form-group">
+                            <label>Email *</label>
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span>
+                                @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control" } })
+
+                            </div>
+                            @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+                        </div>
+
+
+
+                        <div class="form-group">
+                            <label>Email Confirmed</label>
+
+                            <div>
+                                @Html.CheckBoxFor(model => model.EmailConfirmed)
+                            </div>
+                            @Html.ValidationMessageFor(model => model.EmailConfirmed, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <hr />
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label>Phone Number</label>
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="glyphicon glyphicon-phone"></i></span>
+                                @Html.EditorFor(model => model.PhoneNumber, new
+                                {
+                                    htmlAttributes = new
+                                    {
+                                        @class = "form-control",
+                               @placeholder = "Ex. 18005551234, +1 800 555-1234, (800)5551234"
+                           }
+                                })
+
+                            </div>
+                            @Html.ValidationMessageFor(model => model.PhoneNumber, "", new { @class = "text-danger" })
+                        </div>
+                        <div class="form-group">
+                            <label>Phone number confirmed</label>
+                            <div>
+                                @Html.CheckBoxFor(model => model.PhoneNumberConfirmed)
+
+                            </div>
+                            @Html.ValidationMessageFor(model => model.PhoneNumberConfirmed, "", new { @class = "text-danger" })
+                        </div>
+
+                    </div>
+
+
+
+                    <div class="form-group col-md-6">
+                        <label>Username *</label>
+                        <div class="input-group">
+                            <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                            @Html.EditorFor(model => model.UserName, new { htmlAttributes = new { @class = "form-control" } })
+
+                        </div>
+                        @Html.ValidationMessageFor(model => model.UserName, "", new { @class = "text-danger" })
+                    </div>
+
+
+
+                    <div class="form-group col-md-6">
+                        <label>Two Factor Enabled</label>
+                        <div>
+                            @Html.CheckBoxFor(model => model.TwoFactorEnabled)
+
+                        </div>
+                        @Html.ValidationMessageFor(model => model.TwoFactorEnabled, "", new { @class = "text-danger" })
+                    </div>
+                        <div class="form-group col-md-6">
+                            <label>Role</label>
+                            <div class="input-group">
+
+                                <span class="input-group-addon"><i class="glyphicon glyphicon-bookmark"></i></span>
+                                @*@Html.EditorFor(model => model.category_name, new { htmlAttributes = new { @class = "form-control" } })*@
+                                @Html.DropDownList("Name", ViewBag.AspNetRoles as SelectList, "", new { @class = "form-control" })
+
+                            </div>
+                            @Html.ValidationMessage("Name", "", new { @class = "text-danger" })
+
+                        </div>
+
+                        <div class="form-group col-md-6">
+                            <label>User status *</label>
+                            <div>
+                                @Html.RadioButtonFor(model => model.user_status, "Ativo")
+                                <span>Ativo</span>
+                                @Html.RadioButtonFor(model => model.user_status, "Inativo")
+                                <span>Inativo</span>
+
+                            </div>
+                            @Html.ValidationMessageFor(model => model.user_status, "", new { @class = "text-danger" })
+                        </div>
+                    
+
+                    <hr />
+                </fieldset>
+                <br />
+            </div>
+
+            <div class="col-md-6">
+                <fieldset>
+                    <legend>Extra details</legend>
+                    <div class="text-center col-md-12">
+                        <div class="form-group col-md-6">
+                            <label>Main Image</label>
+                            <div>
+                                @{
+                                    string cam = (Model.images_path != null) ? Model.images_path : "~/Images.customers/nouser.jpg";
+
+                                }
+
+                                <img src="@Url.Content(cam)" style="height:150px" alt="Main Image" id="foto" />
+                                <input style="margin:auto" class="form-control" type="file" name="fich" id="fich" onchange="previewFile(this);" />
+
+
+                            </div>
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label>Image path</label>
+                            <div>
+                                @Html.EditorFor(model => model.images_path, new { htmlAttributes = new { @class = "form-control", @disabled = "true", @style = "margin:auto;" } })
+                                @Html.ValidationMessageFor(model => model.images_path, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label>Lockout End Date Utc</label>
+                            <div>
+                                @Html.EditorFor(model => model.LockoutEndDateUtc, new { htmlAttributes = new { @class = "form-control", @disabled = "true" } })
+                                @Html.ValidationMessageFor(model => model.LockoutEndDateUtc, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Lockout Enabled</label>
+                            <div>
+                                @Html.CheckBoxFor(model => model.LockoutEnabled)
+                                @Html.ValidationMessageFor(model => model.LockoutEnabled, "", new { @class = "text-danger" })
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group col-md-6">
+                        <label>Access Failed Count *</label>
+                        <div class="input-group">
+                            <span class="input-group-addon"><i class="glyphicon glyphicon-ban-circle"></i></span>
+                            @Html.EditorFor(model => model.AccessFailedCount, new { htmlAttributes = new { @class = "form-control" } })
+
+                        </div>
+                        @Html.ValidationMessageFor(model => model.AccessFailedCount, "", new { @class = "text-danger" })
+                    </div>
+
+                    <div class="form-group col-md-6">
+                        <label>Security Stamp</label>
+                        <div>
+                            @Html.EditorFor(model => model.SecurityStamp, new { htmlAttributes = new { @class = "form-control", @disabled = "true" } })
+                            @Html.ValidationMessageFor(model => model.SecurityStamp, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+
+
+                </fieldset>
+
+            </div>
+
+        </div>
+        <hr />
+    </section>
+    <footer class="text-center" style="padding:15px"> 
+        <div class="form-group">
+            <input type="submit" value="Save" class="btn btn-default" />
+        </div>
+        <div>
+            @Html.ActionLink("Back to List", "Customer", null, new { @class = "btn btn-warning" })
+        </div>
+    </footer>
+
+
+
+
+
+
+
+
+
+
+
+    
+}
+
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
+
+
+
+@section editafotocustomer{
+    <script>
+        function previewFile(input) {
+
+            var file = $("input[type=file]").get(0).files[0];
+
+            if (file) {
+                var reader = new FileReader();
+
+                reader.onload = function () {
+                    $("#foto").attr("src", reader.result);
+                }
+
+                reader.readAsDataURL(file);
+            }
+        }
+
+
+    </script>
+
+
+}
+
+@*@section validaeditcustomer{
+        <script>
+            $(function () {
+
+                $.validator.addMethod("alfa", function (valor, element) {
+                    var regex = /^[0-9]{9}$/;
+                    return this.optional(element) || regex.test(valor);
+                }, "Padrão errado, introduza 9 números");
+
+
+                //$.validator.addMethod("alfa", function (valor, element) {
+                //    var regex = /2000/g;
+                //    return this.optional(element) || regex.test(valor);
+
+                //}, "Padrão Errado");
+
+
+                //$.validator.addMethod("bravo", function (valor, element) {
+                //    let ano = parseInt(valor);
+                //    mydata = new Date();
+                //    anocorrente = mydata.getFullYear();
+
+                //    console.log(parseInt(anocorrente));
+                //    return this.optional(element) || (ano >= 1900 && ano <= 2021);
+
+                //},
+                //    "Padrão Errado");
+
+                $("#frm").validate({
+                    errorClass: 'help-block animation-slideDown', // You can change the animation class for a different entrance animation - check animations page
+                    errorElement: 'div',
+                    errorPlacement: function (error, e) {
+                        e.parents('.form-group > div').append(error);
+                    },
+                    highlight: function (e) {
+
+                        $(e).closest('.form-group').removeClass('has-success has-error').addClass('has-error');
+                        $(e).closest('.help-block').remove();
+                    },
+                    success: function (e) {
+                        e.closest('.form-group').removeClass('has-success has-error');
+                        e.closest('.help-block').remove();
+                    },  // style
+                    rules: {
+                        Email: { required: true, email: true },
+                        PhoneNumber: { alfa: true },
+                        //cilindrada: { required: true, number: true },
+                        //modelo1: { required: true, rangelength: [5, 23] },
+                        //potencia: { required: true, digits: true }
+
+                    },
+                    messages: {
+                        Email: { required: "Email é obrigatório!", email: "Email tem de ser válido" },
+
+                    }
+
+                });
+            });
+
+        </script>
+
+    }*@

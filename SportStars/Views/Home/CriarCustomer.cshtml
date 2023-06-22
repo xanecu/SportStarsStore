@@ -1,0 +1,101 @@
+﻿@using SportStars.Controllers;
+@model SportStars.Models.RegisterViewModel
+
+
+@{
+    ViewBag.Title = "Criar Customer";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<header class="text-center" style="padding:5px">
+    <h2 style="text-shadow:3px 2px 5px gray">@ViewBag.Title</h2>
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+</header>
+
+@using (Html.BeginForm("CriarCustomer", "Home", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+{
+    @Html.AntiForgeryToken()
+
+
+    <section class="container-fluid">
+        <div class="row col-md-12">
+            <fieldset>
+                <legend>General details</legend>
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label>Email</label>
+                        <div class="input-group">
+                            <span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span>
+                            @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control", @placeholder = "Email *" } })
+
+                        </div>
+                        @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+                    </div>
+
+                    <div class="form-group">
+                        <label>Role</label>
+                        <div class="input-group">
+
+                            <span class="input-group-addon"><i class="glyphicon glyphicon-bookmark"></i></span>
+                            @*@Html.EditorFor(model => model.category_name, new { htmlAttributes = new { @class = "form-control" } })*@
+                            @Html.DropDownList("Name", ViewBag.AspNetRoles as SelectList, "", new { @class = "form-control" })
+
+                        </div>
+                        @Html.ValidationMessage("Name", "", new { @class = "text-danger" })
+
+                    </div>
+                </div>
+
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label>Password</label>
+                        <div class="input-group">
+                            <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
+                            @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "form-control", @placeholder = "Password *" } })
+
+                        </div>
+                        @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
+                    </div>
+
+
+
+                    <div class="form-group">
+                        <label>Confirm Password</label>
+                        <div class="input-group">
+                            <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
+                            @Html.EditorFor(model => model.ConfirmPassword, new { htmlAttributes = new { @class = "form-control", @placeholder = "Confirm Password *", @required = "required" } })
+
+                        </div>
+                        @Html.ValidationMessageFor(model => model.ConfirmPassword, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+
+
+
+
+
+
+            </fieldset>
+            <br />
+        </div>
+        
+    </section>
+    <hr />
+    <footer class="text-center" style="padding:15px">
+        <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-default" />
+        </div>
+        <div>
+            @Html.ActionLink("Back to List", "Customers", null, new { @class = "btn btn-warning" })
+        </div>
+    </footer>
+
+}
+
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

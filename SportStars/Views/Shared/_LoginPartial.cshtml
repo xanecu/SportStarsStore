@@ -1,0 +1,45 @@
+﻿@using Microsoft.AspNet.Identity
+@if (Request.IsAuthenticated)
+{
+    using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
+    {
+        @Html.AntiForgeryToken()
+        
+            <li class="nav navbar-nav dropdown">
+
+                <a style="text-decoration:none" id="dropdownMenu2" href="#" class="dropdown-toggle navbar-link" data-toggle="dropdown" role="button">
+                    <img class="img-circle" style="border:solid 1px" width="50" height="50" src="@Url.Action("Photo", "Account")" />
+                    <span><strong>@User.Identity.GetUserName()</strong></span>
+                </a>
+                @*@Html.ActionLink("Hello " + User.Identity.GetUserName() + "!", "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage", @class = "navbar-link" })*@
+                <ul class="dropdown-menu" aria-labelledby="dropdownMenu2">
+                    <li class="dropdown-header text-center">
+                        <img class="img-circle" width="130" height="130" src="@Url.Action("Photo", "Account")" />
+                        <div style="margin:5px">@User.Identity.GetUserName()</div>
+                    </li>
+
+                    <li class="divider" role="separator">
+
+                    </li>
+                    <li>
+                        <div class="pull-left">
+                            <a href="@Url.Action("Index","Manage", routeValues: null)" class="btn btn-default">Manage</a>
+                        </div>
+                        <div class="pull-right">
+                            <a class="btn btn-default" href="javascript:document.getElementById('logoutForm').submit()">Log off</a>
+                        </div>
+                    </li>
+                </ul>
+            </li>
+
+
+    }
+}
+else
+{
+    <ul class="nav navbar-nav">
+        <li>@Html.ActionLink("Register", "Register", "Account", routeValues: null, htmlAttributes: new { id = "registerLink", @class = "nav-link" })</li>
+        <li>@Html.ActionLink("Log in", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink", @class = "nav-link" })</li>
+    </ul>
+
+}

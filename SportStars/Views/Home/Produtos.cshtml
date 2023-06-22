@@ -1,0 +1,326 @@
+﻿@using PagedList.Mvc
+@using SportStars.Models
+
+@model  PagedList.IPagedList<SportStars.Models.product>
+
+@{
+    ViewBag.Title = "Products";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+
+    //string devolvemarca(int idmarca)
+    //{
+    //    string ret = "";
+    //    using (standEntities bd = new standEntities())
+    //    {
+    //        marca esta = bd.marcas.Find(idmarca);
+    //        ret = (esta != null) ? esta.marca1 : "";
+    //    }
+    //    return ret;
+    //}
+}
+<header style="padding: 5px">
+    <h2 class="text-center" style="text-shadow:3px 2px 5px gray"><strong>Products</strong></h2>
+</header>
+
+<hr />
+
+<div id="alertdiv" class="alert alert-warning alert-dismissible" role="alert" style="display:none">
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+
+    <h4>
+        <i class="glyphicon glyphicon-alert"></i>
+        <strong>Alert!</strong>
+    </h4>
+    <h5></h5>
+
+    @ViewBag.msg
+</div>
+
+<p>
+
+    @*<button class="btn btn-success create">Create <i class="glyphicon glyphicon-open"></i></button>*@
+    @*@Html.ActionLink("Create Product", "CriarProduto", null, new { @class = "btn btn-success" })*@
+    <a href="@Url.Action("CriarProduto", "Home")" class="btn btn-success">Create <i class="glyphicon glyphicon-open"></i></a>
+    <a id="Delete" value="DeleteProduto" class="btn btn-danger">Delete <i class="glyphicon glyphicon-remove"></i></a>
+    @*<input class="btn btn-danger delete" id="Delete" type="button" value="DeleteProduto" />*@
+
+</p>
+
+
+<div class="table-responsive text-center">
+    <table class="table table-hover table-bordered">
+        <thead>
+            <tr class="active">
+                <th><input type="checkbox" id="chkHeader" /></th>
+                <th>Id</th>
+                <th>Status</th>
+                <th>Name</th>
+                <th>Price</th>
+                <th>Qtd</th>
+                <th>Year</th>
+                <th>Type</th>
+                <th>Competition</th>
+                <th>Team</th>
+                <th>Brand</th>
+                <th>Subcategory</th>
+                <th>MainImage</th>
+                <th></th>
+            </tr>
+        </thead>
+
+        @foreach (var item in Model)
+        {
+
+            <tr>
+                <td>
+                    <input type="checkbox" name="ID" id="chkRow" value="@item.product_id" />
+                </td>
+                <td class="details active" data-id="@item.product_id" data-href="@Url.Action("DetailProduto", "Home", new { id = item.product_id})">
+                    @Html.DisplayFor(modelItem => item.product_id)
+                </td>
+                <td>
+                    @if (item.product_status.Equals("Disponível"))
+                    {
+                        <i style="color:green" class="fas fa-certificate" title="Disponível"></i>
+
+                    }
+                    else if (item.product_status.Equals("Indisponível"))
+                    {
+                        <i style="color:red" class="fas fa-certificate" title="Indisponível"></i>
+                    }
+
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.product_name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.product_price)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.product_qtd)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.product_year)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.product_type)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.competition_name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.team_name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.brands_name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.subcategory_name)
+                </td>
+                <td>
+
+                    @{
+                        string cam = (item.product_mainimage != null) ? item.product_mainimage : "~/Images.products/nophoto.jpg";
+
+                    }
+                    <img src=@Url.Content(cam) style="height:100px;" alt="" />
+
+
+
+                </td>
+                <td>
+
+                    <a href="@Url.Action("EditProduto", "Home", new { id = item.product_id})" class="btn btn-primary"><i class="glyphicon glyphicon-edit"></i></a>
+                    @*@Html.ActionLink("Edit", "EditProduto", new { id = item.product_id }, new { @class = "btn btn-info btn-sm" })*@
+
+                    @*@Html.ActionLink("Details", "DetailProduto", new { id = item.product_id }, new { @class = "btn btn-warning btn-sm" })*@
+
+                    @*@Html.ActionLink("Delete", null, null, new { id = item.product_id, name = "lnkdel" })*@
+                    @*<button class="btn btn-danger delete" data-id=@item.product_id name="lnkdel"><i class="glyphicon glyphicon-trash"></i></button>*@
+
+                </td>
+
+            </tr>
+
+        }
+
+    </table>
+    @Html.PagedListPager(Model, (page) => Url.Action("Produtos", new { page, order = ViewBag.order, filtro = ViewBag.filtro }))
+    @((Model.PageNumber > Model.PageCount)?1:Model.PageNumber) de  @Model.PageCount
+
+    <div id="modal" class="modal fade" tabindex="-1" role="dialog" />
+
+</div>
+
+@if (ViewBag.msg != null)
+{
+    <script>
+        //Alert WARNING for Viewbag.msg from Controller
+        $(function () {
+            $("#alertdiv").css("display", "block").fadeTo(6000, 1500).slideUp(1500, function () {
+                $("#alertdiv").slideUp(1500);
+            });
+        });
+    </script>
+}
+
+@section checkbox{
+    <script>
+        $('#chkHeader').click(function (event) {
+
+            var selected = this.checked;
+            // Iterate each checkbox
+            $(':checkbox').each(function () { this.checked = selected; });
+
+        });
+    </script>
+
+}
+
+@section productdetail{
+    <script>
+
+        $(function () {
+
+            $(".details").click(function () {
+                var id = $(this).attr("data-id");
+                if (confirm("Really want to see details of product " + id + "?")) {
+                    jQuery.noConflict();
+                    //window.location = $(this).data('href');
+                    $("#modal").modal('show').load($(this).data('href'));
+                }
+
+            });
+
+
+        });
+
+    </script>
+
+}
+
+
+@section productdelete{
+
+    <script>
+
+        $("body").on("click", "#Delete", function () {
+            //Get all the Checked CheckBoxes.
+            var checked = $("input[id=chkRow]:checked");
+            if (checked.length > 0) {
+
+                //Display Confirmation Message.
+                if (confirm("Do you want to delete " + checked.length + " row(s)?")) {
+
+                    //Loop and build an Array of CustomerId to be deleted.
+                    var id = [];
+                    checked.each(function () {
+                        var productid = parseInt($(this).closest("tr").find("td").eq(1).html());
+                        id.push(productid);
+                    });
+
+                    //Call Delete Action method.
+                    $.ajax({
+                        type: "POST",
+                        url: "@Url.Action("DeleteProduto")",
+                        data: '{id: ' + JSON.stringify(id) + '}',
+                        contentType: "application/json; charset=utf-8",
+                        dataType: "json",
+                        success: function (response) {
+                            console.log(JSON.stringify(response));
+                            if (response.msg == "Registo apagado com sucesso") {
+                                checked.each(function () {
+                                    var row = $(this).closest("tr");
+                                    if ($("tr").length == 1) {
+                                        row.find("td").html("&nbsp;");
+                                        row.find("input").hide();
+                                    } else {
+                                        row.remove();
+                                    }
+                                });
+
+                            }
+                            $("h5").html(response.msg);
+                            $("#alertdiv").css("display", "block").fadeTo(6000, 1500).slideUp(1500, function () {
+                                $("#alertdiv").slideUp(1500);
+                            });
+                        },
+                        error: function () { alert("Erro"); }
+                    });
+                }
+            }
+            else {
+                alert("Choose at least one");
+            }
+        });
+
+       @*function () {
+           $("[name='lnkdel']").click((evt) => {
+               evt = evt ? evt : window.event;
+               evt.preventDefault();
+               if (!confirm("Deseja mesmo eliminar?")) return false;
+               $.ajax({
+                   url: '@Url.Action("DeleteProduto")',
+                   dataType: 'json',
+                   data: { id: evt.target.id },
+                   success: function (data) {
+                       console.log(JSON.stringify(data));
+                       if (data.msg =="Registo apagado com sucesso") $(evt.target).closest('tr').remove();
+                       $("h3").html(data.msg);
+
+                   },
+                   error: function () { alert("erro");}
+               });
+
+           });
+
+
+       });*@
+
+    </script>
+}
+
+@*<nav class="text-center" aria-label="Page navigation" style="border:solid">
+        <ul class="pagination">
+            <li>
+                <a href="#" aria-label="Previous">
+                    <span aria-hidden="true">&laquo;</span>
+                </a>
+            </li>
+            @for (int i = 1; i <= Model.PageCount; i++)
+            {
+                <li class="@(i == Model.PageNumber ? "page-item active" : "page-item")">
+                    <a class="page-link" href="@Url.Action("Produtos", new { page = i })">@i</a>
+                </li>
+
+            }
+            <li>
+                <a href="#" aria-label="Next">
+                    <span aria-hidden="true">&raquo;</span>
+                </a>
+            </li>
+        </ul>
+        <ul class="pagination">
+            <li>
+                <a href="#" aria-label="Previous">
+                    <span aria-hidden="true">&laquo;</span>
+                </a>
+            </li>
+            <li><a href="#">1</a></li>
+            <li><a href="#">2</a></li>
+            <li><a href="#">3</a></li>
+            <li><a href="#">4</a></li>
+            <li><a href="#">5</a></li>
+            <li>
+                <a href="#" aria-label="Next">
+                    <span aria-hidden="true">&raquo;</span>
+                </a>
+            </li>
+        </ul>
+
+
+
+    </nav>*@
+
+
+
